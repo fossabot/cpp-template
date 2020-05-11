@@ -25,7 +25,7 @@ jobs:
         cd magic_enum-0.6.5
         mkdir build && cd build && cmake ..
         make -j4
-        sudo make install
+        make install
 
     - name: configure
       run: mkdir build && cd build && cmake ..
