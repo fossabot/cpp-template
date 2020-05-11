@@ -10,14 +10,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    container: archlinux
 
     steps:
     - uses: actions/checkout@v1
 
     - name: install gtest
-      run: sudo apt install unzip wget && \
-      wget https://github.com/google/googletest/archive/release-1.10.0.zip
-
+      run: pacman -S clang
 
     - name: configure
       run: mkdir build && cd build && cmake ..
