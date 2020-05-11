@@ -12,10 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-
-    - name: install gtest
-      run: sudo apt install libgtest-dev
+    - uses: CyberZHG/github-action-gtest@master
 
     - name: configure
       run: mkdir build && cd build && cmake ..
