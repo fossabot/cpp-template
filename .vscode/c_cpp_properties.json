@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/include",
+        "/usr/local/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0",
+        "/usr/local/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0/x86_64-pc-linux-gnu",
+        "/usr/local/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0/backward",
+        "/usr/local/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include",
+        "/usr/local/include",
+        "/usr/local/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed",
+        "/usr/include",
+        "/usr/lib/clang/10.0.0/include"
+      ],
+      "compileCommands": "${workspaceFolder}/compile_commands.json",
+      "configurationProvider": "vector-of-bool.cmake-tools"
+    }
+  ],
+  "version": 4
+}
