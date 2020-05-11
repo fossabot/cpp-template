@@ -44,7 +44,7 @@ file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS src/test/*.cpp)
 
 enable_testing()
 add_executable(${TEST_PROGRAM_NAME} ${SOURCES} ${TEST_SOURCES})
-target_link_libraries(${TEST_PROGRAM_NAME} gtest)
+target_link_libraries(${TEST_PROGRAM_NAME} ${GTEST_BOTH_LIBRARIES})
 add_test(NAME ${TEST_PROGRAM_NAME} COMMAND ${TEST_PROGRAM_NAME})
 
 file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS src/*.cpp include/*.h)
