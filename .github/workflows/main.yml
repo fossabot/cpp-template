@@ -13,18 +13,18 @@ jobs:
     container: archlinux
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
     - name: install
       run: |
-      pacman -Syu --noconfirm
-      pacman -S --noconfirm gcc make cmake intel-tbb boost fmt nlohmann-json gtest
-      wget https://github.com/Neargye/magic_enum/archive/v0.6.5.zip
-      unzip v0.6.5.zip
-      cd magic_enum-0.6.5
-      mkdir build && cd build && cmake ..
-      make -j4
-      sudo make install
+        pacman -Syu --noconfirm
+        pacman -S --noconfirm gcc make cmake intel-tbb boost fmt nlohmann-json gtest
+        wget https://github.com/Neargye/magic_enum/archive/v0.6.5.zip
+        unzip v0.6.5.zip
+        cd magic_enum-0.6.5
+        mkdir build && cd build && cmake ..
+        make -j4
+        sudo make install
 
     - name: configure
       run: mkdir build && cd build && cmake ..
