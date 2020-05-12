@@ -33,13 +33,5 @@ jobs:
     - name: build
       run: cd build && make -j4
 
-  test:
-
-    runs-on: ubuntu-latest
-    container: archlinux
-
-    steps:
-    - uses: actions/checkout@v2
-
     - name: test
       run: cd build && ctest
