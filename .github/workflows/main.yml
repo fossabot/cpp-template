@@ -43,14 +43,14 @@ jobs:
     - name: configure
       run: mkdir build && cd build && cmake ..
 
+    - name: coverage
+      run: cd build && make coverage
+
     - name: build
       run: cd build && make -j4
 
     - name: test
       run: cd build && make test
-
-    - name: coverage
-      run: cd build && make coverage
 
     - name: coveralls
       uses: coverallsapp/github-action@master
