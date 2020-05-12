@@ -58,6 +58,19 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: build/coverage.info
 
+    - name: Install Strip
+      run: cmake --install build --prefix instdir --strip
+
+    - name: Pack
+      working-directory: instdir
+      run: cmake -E tar cJfv ../Linux.tar.xz .
+
+    - name: Upload
+      uses: actions/upload-artifact@v1
+      with:
+        path: ./Linux.tar.xz
+        name: Linux.tar.xz
+
   release:
 
     if: contains(github.ref, 'tags/v')
