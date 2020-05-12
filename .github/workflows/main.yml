@@ -24,7 +24,7 @@ jobs:
         unzip v0.6.5.zip
         cd magic_enum-0.6.5
         mkdir build && cd build && cmake ..
-        make -j4
+        cmake --build .
         make install
         git clone https://github.com/linux-test-project/lcov
         cd lcov
@@ -41,16 +41,19 @@ jobs:
         make && make install
 
     - name: configure
-      run: mkdir build && cd build && cmake ..
+      run: mkdir build && cd build && cmake -DCOVERAGE ..
 
     - name: coverage
-      run: cd build && make coverage
+      run: cmake --build build --target coverage
 
     - name: build
-      run: cd build && make -j4
+      run: cmake --build build
 
     - name: test
-      run: cd build && make test
+      run: cd build && ctest
+
+    - name: install
+      run: cmake --build . --target install
 
     - name: coveralls
       uses: coverallsapp/github-action@master
