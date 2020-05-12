@@ -37,7 +37,10 @@ jobs:
       run: cd build && make -j4
 
     - name: test
-      run: cd build && ctest
+      run: cd build && make test
+
+    - name: coverage
+      run: cd build && make coverage
 
     - name: coveralls
       uses: coverallsapp/github-action@master

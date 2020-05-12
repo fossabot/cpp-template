@@ -47,15 +47,16 @@ add_executable(${TEST_PROGRAM_NAME} ${SOURCES} ${TEST_SOURCES})
 target_link_libraries(${TEST_PROGRAM_NAME} ${GTEST_BOTH_LIBRARIES})
 add_test(NAME ${TEST_PROGRAM_NAME} COMMAND ${TEST_PROGRAM_NAME})
 
+option(COVERAGE "Open code coverage tool" ON)
+include(Coverage)
+
 file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS src/*.cpp include/*.h)
 file(GLOB_RECURSE CMAKE_FORMAT_SOURCES CONFIGURE_DEPENDS cmake/*.cmake
      CMakeLists.txt)
 
 if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
                                           "RelWithDebInfo"))
-  option(COVERAGE "Open code coverage tool" ON)
   include(Format)
-  include(Coverage)
 endif()
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
