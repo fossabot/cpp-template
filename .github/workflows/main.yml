@@ -19,7 +19,7 @@ jobs:
       run: |
         pacman -Syu --noconfirm
         pacman -S --noconfirm gcc make cmake \
-        intel-tbb boost fmt nlohmann-json gtest wget unzip git
+        intel-tbb boost fmt nlohmann-json gtest wget unzip gzip git
         wget https://github.com/Neargye/magic_enum/archive/v0.6.5.zip
         unzip v0.6.5.zip
         cd magic_enum-0.6.5
