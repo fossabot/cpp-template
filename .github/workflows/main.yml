@@ -1,4 +1,4 @@
-name: CI
+name: C/C++ CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  CI:
+  build:
 
     runs-on: ubuntu-latest
     container: archlinux
