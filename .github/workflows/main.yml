@@ -41,7 +41,7 @@ jobs:
         make && make install
 
     - name: configure
-      run: mkdir build && cd build && cmake -DCOVERAGE ..
+      run: mkdir build && cd build && cmake -DCOVERAGE=TRUE ..
 
     - name: coverage
       run: cmake --build build --target coverage
