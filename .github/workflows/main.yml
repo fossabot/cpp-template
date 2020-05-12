@@ -55,6 +55,9 @@ jobs:
     - name: install
       run: cmake --build build --target install
 
+    - name: uninstall
+      run: cmake --build build --target uninstall
+
     - name: coveralls
       uses: coverallsapp/github-action@master
       with:
