@@ -18,7 +18,7 @@ if(COVERAGE)
                 -b ${CMAKE_SOURCE_DIR} --zerocounters
         COMMAND ${LCOV_PATH} --no-external --gcov-tool ${GCOV_PATH} -c -i -d .
                 -b ${CMAKE_SOURCE_DIR} -o coverage.base
-        COMMAND ${TEST_PROGRAM_NAME}
+        COMMAND ${TEST_PROGRAM_NAME} ${COVERAGE_RUN_ARGS}
         COMMAND
           ${LCOV_PATH} --no-external --gcov-tool ${GCOV_PATH} --directory . -b
           ${CMAKE_SOURCE_DIR} --capture --output-file coverage.capture
@@ -42,11 +42,11 @@ if(COVERAGE)
     if(LLVM_PROFDATA_PATH AND LLVM_COV_PATH)
       add_custom_target(
         coverage
-        COMMAND ${CMAKE_BINARY_DIR}/${TEST_PROGRAM_NAME}
+        COMMAND ${TEST_PROGRAM_NAME} ${COVERAGE_RUN_ARGS}
         COMMAND ${LLVM_PROFDATA_PATH} merge -sparse -o
                 ${TEST_PROGRAM_NAME}.profdata default.profraw
         COMMAND
-          ${LLVM_COV_PATH} show ${CMAKE_BINARY_DIR}/${TEST_PROGRAM_NAME}
+          ${LLVM_COV_PATH} show ${TEST_PROGRAM_NAME}
           -instr-profile=${TEST_PROGRAM_NAME}.profdata
           -show-line-counts-or-regions -format=html -output-dir=coverage
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
