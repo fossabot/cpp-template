@@ -49,16 +49,16 @@ jobs:
       run: mkdir build && cd build && cmake -DCOVERAGE=TRUE ..
 
     - name: build
-      run: cmake --build build -j4
+      run: cmake --build build -j4 --target all
 
     - name: test
       run: cd build && ctest -j4
 
     - name: install
-      run: cmake --build build --target install
+      run: cmake --build build -j4 --target install
 
     - name: uninstall
-      run: cmake --build build --target uninstall
+      run: cmake --build build -j4 --target uninstall
 
     - name: coverage
       run: cmake --build build -j4 --target coverage
