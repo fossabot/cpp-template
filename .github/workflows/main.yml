@@ -48,9 +48,6 @@ jobs:
         CXX: ${{ matrix.compiler }}
       run: mkdir build && cd build && cmake -DCOVERAGE=TRUE ..
 
-    - name: coverage
-      run: cmake --build build --target coverage
-
     - name: build
       run: cmake --build build
 
@@ -62,6 +59,9 @@ jobs:
 
     - name: uninstall
       run: cmake --build build --target uninstall
+
+    - name: coverage
+      run: cmake --build build --target coverage
 
     - name: coveralls
       if: ${{ matrix.compiler == 'g++' }}
