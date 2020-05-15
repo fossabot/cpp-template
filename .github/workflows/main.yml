@@ -13,7 +13,7 @@ jobs:
     container: archlinux
     strategy:
       matrix:
-        compiler: [gcc, clang]
+        compiler: [clang, gcc]
 
     steps:
     - uses: actions/checkout@v2
