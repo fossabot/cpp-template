@@ -13,7 +13,7 @@ jobs:
     container: archlinux
     strategy:
       matrix:
-        compiler: [clang, gcc]
+        compiler: [g++, clang++]
 
     steps:
     - uses: actions/checkout@v2
@@ -64,7 +64,7 @@ jobs:
       run: cmake --build build --target uninstall
 
     - name: coveralls
-      if: ${{ matrix.compiler == 'gcc' }}
+      if: ${{ matrix.compiler == 'g++' }}
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
