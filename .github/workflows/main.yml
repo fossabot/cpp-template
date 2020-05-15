@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-latest
     container: archlinux
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
 
     steps:
     - uses: actions/checkout@v2
@@ -18,7 +21,7 @@ jobs:
     - name: install
       run: |
         pacman -Syu --noconfirm
-        pacman -S --noconfirm base-devel cmake wget unzip git \
+        pacman -S --noconfirm base-devel clang lld llvm cmake wget unzip git \
         intel-tbb boost fmt nlohmann-json gtest
         wget https://github.com/Neargye/magic_enum/archive/v0.6.5.zip
         unzip v0.6.5.zip
@@ -41,6 +44,8 @@ jobs:
         make && make install
 
     - name: configure
+      env:
+        CXX: ${{ matrix.compiler }}
       run: mkdir build && cd build && cmake -DCOVERAGE=TRUE ..
 
     - name: coverage
@@ -59,6 +64,7 @@ jobs:
       run: cmake --build build --target uninstall
 
     - name: coveralls
+      if: ${{ matrix.compiler == 'gcc' }}
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
