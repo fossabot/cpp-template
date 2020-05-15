@@ -27,7 +27,7 @@ jobs:
         unzip v0.6.5.zip
         cd magic_enum-0.6.5
         mkdir build && cd build && cmake ..
-        cmake --build .
+        cmake --build . -j4
         make install
         git clone https://github.com/linux-test-project/lcov
         cd lcov
@@ -36,12 +36,12 @@ jobs:
         tar -xzvf PerlIO-gzip-0.20.tar.gz
         cd PerlIO-gzip-0.20
         perl Makefile.PL
-        make && make install
+        make -j4 && make install
         wget http://www.cpan.org/authors/id/M/MA/MAKAMAKA/JSON-2.90.tar.gz
         tar -xzvf JSON-2.90.tar.gz
         cd JSON-2.90
         perl Makefile.PL
-        make && make install
+        make -j4 && make install
 
     - name: configure
       env:
@@ -49,10 +49,10 @@ jobs:
       run: mkdir build && cd build && cmake -DCOVERAGE=TRUE ..
 
     - name: build
-      run: cmake --build build
+      run: cmake --build build -j4
 
     - name: test
-      run: cd build && ctest
+      run: cd build && ctest -j4
 
     - name: install
       run: cmake --build build --target install
@@ -61,7 +61,7 @@ jobs:
       run: cmake --build build --target uninstall
 
     - name: coverage
-      run: cmake --build build --target coverage
+      run: cmake --build build -j4 --target coverage
 
     - name: coveralls
       if: ${{ matrix.compiler == 'clang++' }}

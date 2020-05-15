@@ -30,8 +30,6 @@ file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS include/*.h src/*.cpp
 file(GLOB_RECURSE CMAKE_FORMAT_SOURCES CONFIGURE_DEPENDS cmake/*.cmake
      CMakeLists.txt)
 
-find_package(GTest REQUIRED)
-
 include_directories(include)
 add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
 
@@ -40,9 +38,10 @@ add_executable(${PROGRAM_NAME} src/main.cpp)
 target_link_libraries(${PROGRAM_NAME} ${LIB_NAME})
 
 enable_testing()
+find_package(GTest REQUIRED)
 add_executable(${TEST_PROGRAM_NAME} ${SOURCES} ${TEST_SOURCES})
-target_link_libraries(${TEST_PROGRAM_NAME} ${GTEST_BOTH_LIBRARIES})
-add_test(NAME ${TEST_PROGRAM_NAME} COMMAND ${TEST_PROGRAM_NAME})
+target_link_libraries(${TEST_PROGRAM_NAME} ${GTEST_LIBRARIES})
+gtest_discover_tests(${TEST_PROGRAM_NAME})
 
 include(Coverage)
 if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
