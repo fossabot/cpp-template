@@ -18,6 +18,7 @@ if(${COVERAGE})
     find_program(GENHTML_PATH NAMES genhtml)
 
     if(LCOV_PATH AND GENHTML_PATH)
+      # TODO 考虑使用 llvm-cov
       add_custom_target(
         coverage
         COMMAND ${LCOV_PATH} --directory . --zerocounters
