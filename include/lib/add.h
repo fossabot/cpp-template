@@ -1,8 +1,10 @@
 /**
  * @ Author: KaiserLancelot
  * @ Create Time: 2020-05-11 22:18:32
- * @ Modified time: 2020-05-15 02:10:03
+ * @ Modified time: 2020-05-19 01:08:00
  */
+
+#pragma once
 
 #include <cstdint>
 

@@ -18,6 +18,8 @@ include(Check)
 include(CompilerOptions)
 include(Sanitizers)
 
+set(CMAKE_CXX_CLANG_TIDY clang-tidy -header-filter=.*)
+
 set(LIB_NAME ${PROJECT_NAME}_lib)
 set(PROGRAM_NAME ${PROJECT_NAME})
 set(TEST_PROGRAM_NAME ${PROJECT_NAME}_test)
