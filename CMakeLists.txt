@@ -18,6 +18,11 @@ include(Check)
 include(CompilerOptions)
 include(Sanitizers)
 
+if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
+                                          "RelWithDebInfo"))
+  set(CMAKE_CXX_CLANG_TIDY clang-tidy -header-filter=.*)
+endif()
+
 set(LIB_NAME ${PROJECT_NAME}_lib)
 set(PROGRAM_NAME ${PROJECT_NAME})
 set(TEST_PROGRAM_NAME ${PROJECT_NAME}_test)
@@ -47,7 +52,6 @@ include(Coverage)
 if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
                                           "RelWithDebInfo"))
   include(Format)
-  set(CMAKE_CXX_CLANG_TIDY clang-tidy -header-filter=.*)
 endif()
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
