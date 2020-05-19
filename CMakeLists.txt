@@ -15,13 +15,9 @@ endif()
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(Check)
+include(ClangTidy)
 include(CompilerOptions)
 include(Sanitizers)
-
-if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
-                                          "RelWithDebInfo"))
-  set(CMAKE_CXX_CLANG_TIDY clang-tidy -header-filter=.*)
-endif()
 
 set(LIB_NAME ${PROJECT_NAME}_lib)
 set(PROGRAM_NAME ${PROJECT_NAME})

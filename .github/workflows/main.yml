@@ -46,7 +46,7 @@ jobs:
     - name: configure
       env:
         CXX: ${{ matrix.compiler }}
-      run: mkdir build && cd build && cmake -DCOVERAGE=TRUE ..
+      run: mkdir build && cd build && cmake -DCOVERAGE=TRUE -DCLANG_TIDY=TRUE ..
 
     - name: build
       run: cmake --build build -j4 --target all
