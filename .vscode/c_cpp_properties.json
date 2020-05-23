@@ -1,7 +1,6 @@
 {
   "configurations": [
     {
-      "name": "Linux",
       "includePath": [
         "${workspaceFolder}/include",
         "/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/../../../../include/c++/10.1.0",
@@ -11,10 +10,7 @@
         "/usr/local/include",
         "/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed",
         "/usr/include"
-      ],
-      "compileCommands": "${workspaceFolder}/compile_commands.json",
-      "configurationProvider": "vector-of-bool.cmake-tools"
+      ]
     }
-  ],
-  "version": 4
+  ]
 }
