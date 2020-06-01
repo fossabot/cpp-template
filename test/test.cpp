@@ -1,8 +1,6 @@
-/**
- * @ Author: KaiserLancelot
- * @ Create Time: 2020-05-11 23:38:54
- * @ Modified time: 2020-05-15 02:10:10
- */
+//
+// Created by kaiser on 2020/5/11.
+//
 
 #include <gtest/gtest.h>
 

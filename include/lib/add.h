@@ -1,11 +1,12 @@
-/**
- * @ Author: KaiserLancelot
- * @ Create Time: 2020-05-11 22:18:32
- * @ Modified time: 2020-05-19 02:57:27
- */
+//
+// Created by kaiser on 2020/5/11.
+//
 
-#pragma once
+#ifndef INCLUDE_LIB_ADD_H
+#define INCLUDE_LIB_ADD_H
 
 #include <cstdint>
 
 std::int32_t add(std::int32_t lhs, std::int32_t rhs);
+
+#endif  // INCLUDE_LIB_ADD_H
