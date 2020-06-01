@@ -33,6 +33,8 @@
 
 # Development files
 .clangd
+.idea
 build
+cmake-build-*
 *.profraw
 compile_commands.json
