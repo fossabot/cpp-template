@@ -19,9 +19,9 @@ include(ClangTidy)
 include(CompilerOptions)
 include(Sanitizers)
 
-set(LIB_NAME ${PROJECT_NAME}_lib)
+set(LIB_NAME ${PROJECT_NAME}-lib)
 set(PROGRAM_NAME ${PROJECT_NAME})
-set(TEST_PROGRAM_NAME ${PROJECT_NAME}_test)
+set(TEST_PROGRAM_NAME ${PROJECT_NAME}-test)
 set(COVERAGE_RUN_ARGS "")
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/lib/*.cpp)

@@ -6,4 +6,4 @@
 
 #include "lib/add.h"
 
-TEST(AddTest, Test1) { ASSERT_EQ(add(1, 2), 3); }
+TEST(add_test, test1) { ASSERT_EQ(add(1, 2), 3); }
