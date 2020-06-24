@@ -1,12 +1,3 @@
-if(NOT COVERAGE)
-  if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
-                                            "RelWithDebInfo"))
-    set(COVERAGE ON)
-  else()
-    set(COVERAGE OFF)
-  endif()
-endif()
-
 if(${COVERAGE})
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     message(STATUS "Building with lcov Code Coverage Tools")
@@ -22,7 +13,7 @@ if(${COVERAGE})
       add_custom_target(
         coverage
         COMMAND ${LCOV_PATH} --directory . --zerocounters
-        COMMAND ${TEST_PROGRAM_NAME} ${COVERAGE_RUN_ARGS}
+        COMMAND ${TEST_PROGRAM_NAME} ${RUN_ARGS}
         COMMAND ${LCOV_PATH} --no-external -b ${CMAKE_SOURCE_DIR} --directory .
                 --capture --output-file coverage.info
         COMMAND ${GENHTML_PATH} -o coverage coverage.info
@@ -41,7 +32,7 @@ if(${COVERAGE})
     if(LLVM_PROFDATA_PATH AND LLVM_COV_PATH)
       add_custom_target(
         coverage
-        COMMAND ${TEST_PROGRAM_NAME} ${COVERAGE_RUN_ARGS}
+        COMMAND ${TEST_PROGRAM_NAME} ${RUN_ARGS}
         COMMAND ${LLVM_PROFDATA_PATH} merge -sparse -o
                 ${TEST_PROGRAM_NAME}.profdata default.profraw
         COMMAND

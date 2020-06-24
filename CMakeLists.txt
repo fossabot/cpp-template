@@ -22,7 +22,7 @@ include(Sanitizers)
 set(LIB_NAME ${PROJECT_NAME}-lib)
 set(PROGRAM_NAME ${PROJECT_NAME})
 set(TEST_PROGRAM_NAME ${PROJECT_NAME}-test)
-set(COVERAGE_RUN_ARGS "")
+set(RUN_ARGS "")
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/lib/*.cpp)
 file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS test/*.cpp)
@@ -48,6 +48,11 @@ include(Coverage)
 if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
                                           "RelWithDebInfo"))
   include(Format)
+endif()
+
+if((CMAKE_BUILD_TYPE MATCHES "Release") OR (CMAKE_BUILD_TYPE MATCHES
+                                            "RelWithDebInfo"))
+  include(Profile)
 endif()
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
