@@ -1,4 +1,4 @@
 {
-  "CppHelper.HeaderGuardPattern": "CPP_TEMPLATE_{FILE}_H"
-  // "cmake.configureArgs": ["-DCOVERAGE=TRUE"]
+  "CppHelper.HeaderGuardPattern": "CPP_TEMPLATE_{FILE}_H",
+  "cmake.configureArgs": ["-DCOVERAGE=TRUE"]
 }
