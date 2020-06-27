@@ -1,5 +1,3 @@
-- main.yml 格式化无效
-- 使用 llvm-cov 而不是 lcov(并修改 main.yml)
-- 使用快捷键调试有时不好使(bug)
-- 使用快捷键运行无效(bug)
-- 调试不能显示变量值(bug)
+- 使用 llvm-cov 而不是 lcov(并修改 main.yml,LLVM 11 发布后尝试修改)
+- main.yml 格式化无效(Prettier 显示文件有错误)
+- CodeLLDB bug(目前降级基本解决)
