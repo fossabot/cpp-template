@@ -16,11 +16,11 @@ if(${COVERAGE})
 
     add_custom_target(
       coverage
-      COMMAND ${LCOV_PATH} --directory . --zerocounters
+      COMMAND ${LCOV_PATH} -d . -z
       COMMAND ${TEST_PROGRAM_NAME} ${RUN_ARGS}
-      COMMAND ${LCOV_PATH} --no-external -b ${CMAKE_SOURCE_DIR} --directory .
-              --capture --output-file coverage.info
-      COMMAND ${GENHTML_PATH} -o coverage coverage.info
+      COMMAND ${LCOV_PATH} --include '${CMAKE_SOURCE_DIR}/*' -d . -c -o
+              coverage.info
+      COMMAND ${GENHTML_PATH} coverage.info -o coverage
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME})
   else()

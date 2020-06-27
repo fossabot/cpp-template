@@ -19,9 +19,9 @@ include(ClangTidy)
 include(CompilerOptions)
 include(Sanitizers)
 
-set(LIB_NAME ${PROJECT_NAME}-lib)
-set(PROGRAM_NAME ${PROJECT_NAME})
-set(TEST_PROGRAM_NAME ${PROJECT_NAME}-test)
+set(LIB_NAME add-lib)
+set(PROGRAM_NAME add)
+set(TEST_PROGRAM_NAME add-test)
 set(RUN_ARGS "")
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/lib/*.cpp)
@@ -55,7 +55,7 @@ if((CMAKE_BUILD_TYPE MATCHES "Release") OR (CMAKE_BUILD_TYPE MATCHES
   include(Profile)
 endif()
 
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+install(TARGETS ${PROGRAM_NAME} RUNTIME DESTINATION bin)
 
 add_custom_target(uninstall COMMAND rm
-                                    ${CMAKE_INSTALL_PREFIX}/bin/${PROJECT_NAME})
+                                    ${CMAKE_INSTALL_PREFIX}/bin/${PROGRAM_NAME})
