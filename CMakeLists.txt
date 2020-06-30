@@ -50,11 +50,6 @@ if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
   include(Format)
 endif()
 
-if((CMAKE_BUILD_TYPE MATCHES "Release") OR (CMAKE_BUILD_TYPE MATCHES
-                                            "RelWithDebInfo"))
-  include(Profile)
-endif()
-
 install(TARGETS ${PROGRAM_NAME} RUNTIME DESTINATION bin)
 
 add_custom_target(uninstall COMMAND rm
