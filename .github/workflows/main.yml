@@ -66,5 +66,5 @@ jobs:
         if: ${{ matrix.compiler == 'clang++' }}
         uses: codecov/codecov-action@v1
         with:
-          path-to-lcov: build/coverage.info
+          file: build/coverage.info
           fail_ci_if_error: true
