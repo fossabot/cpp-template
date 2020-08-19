@@ -1,8 +1,8 @@
-#include "lib/add.h"
-
 #include <cstdint>
 #include <iostream>
 #include <vector>
+
+#include "lib/add.h"
 
 int main() {
   std::vector<std::int32_t> v;
