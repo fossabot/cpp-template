@@ -38,4 +38,3 @@ build
 cmake-build-*
 *.profraw
 compile_commands.json
-.VSCodeCounter

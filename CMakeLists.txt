@@ -19,24 +19,22 @@ include(ClangTidy)
 include(CompilerOptions)
 include(Sanitizers)
 
-set(LIB_NAME add-lib)
 set(PROGRAM_NAME add)
 set(TEST_PROGRAM_NAME add-test)
 set(RUN_ARGS "")
 
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/lib/*.cpp)
-file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS test/*.cpp)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
+file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS tests/*.cpp)
 file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS include/*.h src/*.cpp
-     test/*.cpp)
+     tests/*.cpp)
 file(GLOB_RECURSE CMAKE_FORMAT_SOURCES CONFIGURE_DEPENDS cmake/*.cmake
      CMakeLists.txt)
+list(REMOVE_ITEM SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp)
 
 include_directories(include)
 add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
 
-add_library(${LIB_NAME} SHARED ${SOURCES})
-add_executable(${PROGRAM_NAME} src/main.cpp)
-target_link_libraries(${PROGRAM_NAME} ${LIB_NAME})
+add_executable(${PROGRAM_NAME} ${SOURCES} src/main.cpp)
 
 enable_testing()
 find_package(GTest REQUIRED)
