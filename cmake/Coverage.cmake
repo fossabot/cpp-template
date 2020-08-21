@@ -18,7 +18,7 @@ if(${COVERAGE})
     add_custom_target(
       coverage
       COMMAND ${LCOV_PATH} -d . -z
-      COMMAND ${TEST_PROGRAM_NAME} ${RUN_ARGS}
+      COMMAND ${TEST_PROGRAM_NAME} ${TEST_RUN_ARGS}
       COMMAND ${LCOV_PATH} --include '${CMAKE_SOURCE_DIR}/*' -d . -c -o
               coverage.info
       COMMAND ${GENHTML_PATH} coverage.info -o coverage
@@ -42,7 +42,7 @@ if(${COVERAGE})
 
     add_custom_target(
       coverage
-      COMMAND ${TEST_PROGRAM_NAME} ${RUN_ARGS}
+      COMMAND ${TEST_PROGRAM_NAME} ${TEST_RUN_ARGS}
       COMMAND ${LLVM_PROFDATA_PATH} merge -sparse -o
               ${TEST_PROGRAM_NAME}.profdata default.profraw
       COMMAND

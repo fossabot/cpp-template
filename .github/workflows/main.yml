@@ -20,14 +20,7 @@ jobs:
       - name: Install libraries and tools
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel clang lld llvm cmake wget unzip git \
-          intel-tbb asio benchmark boost rocksdb fmt gtest nlohmann-json protobuf spdlog
-          wget https://github.com/Neargye/magic_enum/archive/v0.6.6.zip
-          unzip v0.6.6.zip
-          cd magic_enum-0.6.6
-          mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
-          cmake --build . -j$(nproc)
-          make install
+          pacman -S --noconfirm base-devel clang lld llvm cmake wget git gtest
           git clone https://github.com/linux-test-project/lcov
           cd lcov
           make install
@@ -54,13 +47,10 @@ jobs:
         run: cd build && ctest -j$(nproc) --output-on-failure
 
       - name: Install
-        run: cmake --build build -j$(nproc) --target install
-
-      - name: Uninstall
-        run: cmake --build build -j$(nproc) --target uninstall
+        run: cmake --build build --target install
 
       - name: Gather coverage data
-        run: cmake --build build -j4 --target coverage
+        run: cmake --build build -j$(nproc) --target coverage
 
       - name: Codecov upload
         if: ${{ matrix.compiler == 'clang++' }}

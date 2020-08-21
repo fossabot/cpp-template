@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 
 project(
   cpp-template
-  VERSION 0.1
+  VERSION 0.1.0
   LANGUAGES CXX)
 
 if((CMAKE_BUILD_TYPE STREQUAL "Debug") OR (CMAKE_BUILD_TYPE STREQUAL
@@ -21,7 +21,7 @@ include(Sanitizers)
 
 set(PROGRAM_NAME add)
 set(TEST_PROGRAM_NAME add-test)
-set(RUN_ARGS "")
+set(TEST_RUN_ARGS "")
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS tests/*.cpp)
@@ -49,6 +49,3 @@ if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
 endif()
 
 install(TARGETS ${PROGRAM_NAME} RUNTIME DESTINATION bin)
-
-add_custom_target(uninstall COMMAND rm
-                                    ${CMAKE_INSTALL_PREFIX}/bin/${PROGRAM_NAME})
