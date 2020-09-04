@@ -5,14 +5,6 @@ project(
   VERSION 0.1.0
   LANGUAGES CXX)
 
-if((CMAKE_BUILD_TYPE STREQUAL "Debug") OR (CMAKE_BUILD_TYPE STREQUAL
-                                           "RelWithDebInfo"))
-  # Address Memory Thread None
-  set(SANITIZER "Address")
-else()
-  set(SANITIZER "None")
-endif()
-
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(Check)
 include(ClangTidy)
@@ -43,9 +35,6 @@ target_link_libraries(${TEST_PROGRAM_NAME} ${GTEST_LIBRARIES})
 gtest_discover_tests(${TEST_PROGRAM_NAME})
 
 include(Coverage)
-if((CMAKE_BUILD_TYPE MATCHES "Debug") OR (CMAKE_BUILD_TYPE MATCHES
-                                          "RelWithDebInfo"))
-  include(Format)
-endif()
+include(Format)
 
 install(TARGETS ${PROGRAM_NAME} RUNTIME DESTINATION bin)

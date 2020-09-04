@@ -1,4 +1,6 @@
-if(SANITIZER STREQUAL "Address")
+if(NOT ${SANITIZER})
+  message(STATUS "Building without Sanitizer")
+elseif(SANITIZER STREQUAL "Address")
   message(STATUS "Building with AddressSanitizer and UndefinedSanitizer")
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer"
@@ -20,8 +22,6 @@ elseif(SANITIZER STREQUAL "Thread")
   message(STATUS "Building with ThreadSanitizer and UndefinedSanitizer")
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
-elseif(SANITIZER STREQUAL "None")
-
 else()
   message(FATAL_ERROR "The Sanitizer is not supported")
 endif()

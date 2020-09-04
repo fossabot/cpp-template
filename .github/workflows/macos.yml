@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  ci:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install libraries and tools
+        run: 
+
+      - name: CMake
+        run: mkdir build && cd build && cmake -DCLANG_TIDY=TRUE ..
+
+      - name: Build
+        run: cmake --build build -j$(nproc) --target all
+
+      - name: Execute tests
+        run: cd build && ctest -j$(nproc) --output-on-failure
+
+      - name: Install
+        run: cmake --build build --target install

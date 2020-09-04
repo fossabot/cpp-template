@@ -1,3 +1,8 @@
 {
-  "cmake.configureArgs": ["-DCOVERAGE=TRUE"]
+  "cmake.configureArgs": [
+    "-DCLANG_TIDY=FALSE",
+    "-DCOVERAGE=TRUE",
+    "-DFORMAT=TRUE",
+    "-DSANITIZER=Address"
+  ]
 }
