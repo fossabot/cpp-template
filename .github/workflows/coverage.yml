@@ -6,6 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: archlinux
+    strategy:
+      matrix:
+        compiler: [g++, clang++]
 
     steps:
       - uses: actions/checkout@v2
@@ -18,12 +21,13 @@ jobs:
       - name: Configure
         run: cmake -S . -B build -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
         env:
-          CXX: clang++
+          CXX: ${{ matrix.compiler }}
 
       - name: Build
         run: cmake --build build -j$(nproc) --target coverage
 
       - name: Coveralls
+        if: ${{ matrix.compiler == 'clang++' }}
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
