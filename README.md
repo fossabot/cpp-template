@@ -22,8 +22,12 @@ A template for C++ projects using CMake
 - https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
 - https://clang.llvm.org/docs/ClangCommandLineReference.html
 
+### Coverage
+
 - https://github.com/linux-test-project/lcov
 - https://llvm.org/docs/CommandGuide/llvm-cov.html
+
+### Sanitizer
 
 - https://github.com/google/sanitizers/wiki/AddressSanitizer
 - https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
@@ -31,7 +35,9 @@ A template for C++ projects using CMake
 - https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual
 - https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
 
-- https://clang.llvm.org/docs/ClangFormat.html
+### Tools
 
+- https://www.valgrind.org/docs/manual/manual.html
+- https://clang.llvm.org/docs/ClangFormat.html
 - https://clang.llvm.org/extra/clang-tidy/
 - https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html

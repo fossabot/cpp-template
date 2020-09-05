@@ -20,10 +20,13 @@ if(COVERAGE)
       COMMAND ${TEST_PROGRAM_NAME}
       COMMAND
         ${LCOV} -d . --include '${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp' --include
-        '${CMAKE_CURRENT_SOURCE_DIR}/include/*.h' -c -o lcov.info
-      COMMAND ${GENHTML} lcov.info -o coverage
+        '${CMAKE_CURRENT_SOURCE_DIR}/include/*.h' -c -o lcov.info --rc
+        lcov_branch_coverage=1
+      COMMAND ${GENHTML} lcov.info -o coverage -s --title "${PROJECT_NAME}"
+              --legend --demangle-cpp --branch-coverage
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-      DEPENDS ${TEST_PROGRAM_NAME})
+      DEPENDS ${TEST_PROGRAM_NAME}
+      COMMENT "Generating HTML report build/coverage/index.html")
   else()
     message(STATUS "Building with llvm-cov code coverage tool")
     string(APPEND CMAKE_CXX_FLAGS
@@ -48,7 +51,7 @@ if(COVERAGE)
       COMMAND
         ${LLVM_COV} show ${TEST_PROGRAM_NAME}
         -instr-profile=${TEST_PROGRAM_NAME}.profdata -format=html
-        -output-dir=coverage
+        -output-dir=coverage -show-line-counts-or-regions
         -ignore-filename-regex=${CMAKE_CURRENT_SOURCE_DIR}/tests/*
       COMMAND
         ${LLVM_COV} export ${TEST_PROGRAM_NAME}
@@ -56,6 +59,7 @@ if(COVERAGE)
         -ignore-filename-regex=${CMAKE_CURRENT_SOURCE_DIR}/tests/* -format=lcov
         > lcov.info
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-      DEPENDS ${TEST_PROGRAM_NAME})
+      DEPENDS ${TEST_PROGRAM_NAME}
+      COMMENT "Generating HTML report build/coverage/index.html")
   endif()
 endif()

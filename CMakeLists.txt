@@ -22,7 +22,7 @@ include(CTest)
 
 option(BUILD_TESTING "Build test suite" ON)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
-option(FORMAT "Foramt code" OFF)
+option(FORMAT "Format code" OFF)
 
 # =============
 # === Files ===
@@ -91,7 +91,7 @@ if(BUILD_TESTING)
   include(Valgrind)
 endif()
 
-# === Target: foramt ===
+# === Target: format ===
 include(Format)
 
 # ===============
