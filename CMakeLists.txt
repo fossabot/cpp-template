@@ -6,14 +6,6 @@ project(
   LANGUAGES CXX)
 
 # ===============
-# === Options ===
-# ===============
-
-option(BUILD_TESTING "Build test suite" ON)
-option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
-option(FORMAT "Foramt code" OFF)
-
-# ===============
 # === Include ===
 # ===============
 
@@ -21,10 +13,16 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 include(Check)
 include(CompilerOptions)
+include(ClangTidy)
+include(CTest)
 
-if(CLANG_TIDY)
-  include(ClangTidy)
-endif()
+# ===============
+# === Options ===
+# ===============
+
+option(BUILD_TESTING "Build test suite" ON)
+option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
+option(FORMAT "Foramt code" OFF)
 
 # =============
 # === Files ===
@@ -61,52 +59,40 @@ target_include_directories(${LIB_NAME} PUBLIC include)
 add_executable(${PROGRAM_NAME} ${SOURCES})
 target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
 
-# === Target: test ===
-
-include(CTest)
-
 if(BUILD_TESTING)
   message(STATUS "Building test suite")
-  enable_testing()
-  # === Target: test program ===
 
+  # ===============
+  # === Options ===
+  # ===============
+
+  option(COVERAGE "Build test suite with coverage information" OFF)
+  option(VALGRIND "Execute test suite with Valgrind" OFF)
+
+  set(SANITIZER
+      ""
+      CACHE
+        STRING
+        "Compile with a sanitizer. Options are: Address, Memory, Thread, Undefined"
+  )
+
+  enable_testing()
   find_package(GTest REQUIRED)
+
+  # === Target: test ===
 
   add_executable(${TEST_PROGRAM_NAME} ${TEST_SOURCES})
   target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME}
                                                      ${GTEST_LIBRARIES})
   gtest_discover_tests(${TEST_PROGRAM_NAME})
 
-  # ===============
-  # === Options ===
-  # ===============
-
-  option(VALGRIND "Execute test suite with Valgrind" OFF)
-  option(COVERAGE "Build test suite with coverage information" OFF)
-
-  if(SANITIZER)
-    include(Sanitizers)
-  endif()
-
-  if(VALGRIND)
-    find_program(CMAKE_MEMORYCHECK_COMMAND valgrind)
-    message(STATUS "Executing test suite with Valgrind")
-    add_test(
-      NAME "${TEST_PROGRAM_NAME}-valgrind"
-      COMMAND
-        ${CMAKE_MEMORYCHECK_COMMAND} --error-exitcode=1 --leak-check=full
-        ${CMAKE_CURRENT_BINARY_DIR}/${TEST_PROGRAM_NAME} ${DOCTEST_TEST_FILTER})
-  endif()
-
-  if(COVERAGE)
-    include(Coverage)
-  endif()
+  include(Coverage)
+  include(Sanitizers)
+  include(Valgrind)
 endif()
 
 # === Target: foramt ===
-if(FORMAT)
-  include(Format)
-endif()
+include(Format)
 
 # ===============
 # === Install ===

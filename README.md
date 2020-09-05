@@ -10,28 +10,28 @@ A template for C++ projects using CMake
 
 ## Reference
 
-https://packages.ubuntu.com/
-https://docs.github.com/cn/actions/reference/software-installed-on-github-hosted-runners
-https://github.com/github/codeql-action
-https://github.com/codecov/codecov-action
+### Github Action
 
-https://cmake.org/cmake/help/latest/
-https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
-https://clang.llvm.org/docs/ClangCommandLineReference.html
+- https://docs.github.com/cn/actions
+- https://github.com/github/codeql-action
+- https://github.com/codecov/codecov-action
 
-https://github.com/linux-test-project/lcov
+### CMake
 
-https://github.com/google/sanitizers/wiki/AddressSanitizer
-https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
-https://github.com/google/sanitizers/wiki/MemorySanitizer
-https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual
-https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
+- https://cmake.org/cmake/help/latest/
+- https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
+- https://clang.llvm.org/docs/ClangCommandLineReference.html
 
-https://clang.llvm.org/docs/ClangFormat.html
+- https://github.com/linux-test-project/lcov
+- https://llvm.org/docs/CommandGuide/llvm-cov.html
 
-https://clang.llvm.org/extra/clang-tidy/
-https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html
+- https://github.com/google/sanitizers/wiki/AddressSanitizer
+- https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
+- https://github.com/google/sanitizers/wiki/MemorySanitizer
+- https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual
+- https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
 
-https://launchpad.net/ubuntu
+- https://clang.llvm.org/docs/ClangFormat.html
 
-TODO benchmarks
+- https://clang.llvm.org/extra/clang-tidy/
+- https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html

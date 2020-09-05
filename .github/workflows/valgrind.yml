@@ -6,6 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: archlinux
+    strategy:
+      matrix:
+        compiler: [g++, clang++]
 
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +20,8 @@ jobs:
 
       - name: Configure
         run: cmake -S . -B build -DVALGRIND=ON
+        env:
+          CXX: ${{ matrix.compiler }}
 
       - name: Build
         run: cmake --build build -j$(nproc)
