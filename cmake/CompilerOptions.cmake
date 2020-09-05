@@ -6,7 +6,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wpedantic -Werror")
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
-  add_link_options(-fuse-ld=lld)
+  if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
+    add_link_options(-fuse-ld=lld)
+  endif()
 
   if((CMAKE_BUILD_TYPE STREQUAL "Debug") OR (CMAKE_BUILD_TYPE STREQUAL
                                              "RelWithDebInfo"))

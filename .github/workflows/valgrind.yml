@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install
-        run: apt install g++10 googletest valgrind
+        run: sudo apt install g++10 googletest valgrind
 
       - name: Configure
         env:
