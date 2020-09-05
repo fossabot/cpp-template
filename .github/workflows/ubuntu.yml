@@ -14,7 +14,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install
-        run: sudo apt install g++10 llvm-toolchain-10 googletest
+        run: |
+          sudo apt update
+          sudo apt upgrade
+          sudo apt install g++10 llvm-toolchain-10 googletest
 
       - name: Configure
         env:
