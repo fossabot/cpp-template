@@ -9,7 +9,7 @@ project(
 # === Options ===
 # ===============
 
-option(BUILD_TESTING "BuildING test suite" ON)
+option(BUILD_TESTING "Build test suite" ON)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
 option(FORMAT "Foramt code" OFF)
 
@@ -68,7 +68,39 @@ include(CTest)
 if(BUILD_TESTING)
   message(STATUS "Building test suite")
   enable_testing()
-  add_subdirectory(tests)
+  # === Target: test program ===
+
+  find_package(GTest REQUIRED)
+
+  add_executable(${TEST_PROGRAM_NAME} ${TEST_SOURCES})
+  target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME}
+                                                     ${GTEST_LIBRARIES})
+  gtest_discover_tests(${TEST_PROGRAM_NAME})
+
+  # ===============
+  # === Options ===
+  # ===============
+
+  option(VALGRIND "Execute test suite with Valgrind" OFF)
+  option(COVERAGE "Build test suite with coverage information" OFF)
+
+  if(SANITIZER)
+    include(Sanitizers)
+  endif()
+
+  if(VALGRIND)
+    find_program(CMAKE_MEMORYCHECK_COMMAND valgrind)
+    message(STATUS "Executing test suite with Valgrind")
+    add_test(
+      NAME "${TEST_PROGRAM_NAME}-valgrind"
+      COMMAND
+        ${CMAKE_MEMORYCHECK_COMMAND} --error-exitcode=1 --leak-check=full
+        ${CMAKE_CURRENT_BINARY_DIR}/${TEST_PROGRAM_NAME} ${DOCTEST_TEST_FILTER})
+  endif()
+
+  if(COVERAGE)
+    include(Coverage)
+  endif()
 endif()
 
 # === Target: foramt ===

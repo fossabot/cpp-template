@@ -18,13 +18,6 @@ endif()
 
 if((CMAKE_BUILD_TYPE STREQUAL "Release") OR (CMAKE_BUILD_TYPE STREQUAL
                                              "RelWithDebInfo"))
-  include(CheckIPOSupported)
-  check_ipo_supported(RESULT lto_supported OUTPUT error)
-
-  if(lto_supported)
-    message(STATUS "IPO / LTO enabled")
-    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
-  else()
-    message(STATUS "IPO / LTO not supported: <${error}>")
-  endif()
+  message(STATUS "IPO / LTO enabled")
+  set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 endif()

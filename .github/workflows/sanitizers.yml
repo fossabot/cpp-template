@@ -3,7 +3,7 @@ name: Sanitizers
 on: [push, pull_request]
 
 jobs:
-  build:
+  address:
     runs-on: ubuntu-latest
     container: archlinux
 
@@ -16,7 +16,70 @@ jobs:
           pacman -S --noconfirm base-devel cmake gtest
 
       - name: Configure
-        run: cmake -S . -B build -DSANITIZER=ON
+        run: cmake -S . -B build -DSANITIZER=Address
+
+      - name: Build
+        run: cmake --build build -j$(nproc)
+
+      - name: Test
+        run: cd build ; ctest -j$(nproc) --output-on-failure
+
+  memory:
+    runs-on: ubuntu-latest
+    container: archlinux
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel cmake gtest
+
+      - name: Configure
+        run: cmake -S . -B build -DSANITIZER=Memory
+
+      - name: Build
+        run: cmake --build build -j$(nproc)
+
+      - name: Test
+        run: cd build ; ctest -j$(nproc) --output-on-failure
+
+  thread:
+    runs-on: ubuntu-latest
+    container: archlinux
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel cmake gtest
+
+      - name: Configure
+        run: cmake -S . -B build -DSANITIZER=Thread
+
+      - name: Build
+        run: cmake --build build -j$(nproc)
+
+      - name: Test
+        run: cd build ; ctest -j$(nproc) --output-on-failure
+
+  undefined:
+    runs-on: ubuntu-latest
+    container: archlinux
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel cmake gtest
+
+      - name: Configure
+        run: cmake -S . -B build -DSANITIZER=Undefined
 
       - name: Build
         run: cmake --build build -j$(nproc)

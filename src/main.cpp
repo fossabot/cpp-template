@@ -11,4 +11,6 @@ int main() {
   v.push_back(3);
 
   std::cout << add(1, 2) << '\n';
+
+  Bar bar;
 }

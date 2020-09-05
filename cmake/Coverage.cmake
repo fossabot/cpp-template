@@ -3,24 +3,25 @@ if(COVERAGE)
     message(STATUS "Building with LCOV code coverage tool")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 
-    find_program(LCOV_PATH NAMES lcov)
-    find_program(GENHTML_PATH NAMES genhtml)
+    find_program(LCOV NAMES lcov)
+    find_program(GENHTML NAMES genhtml)
 
-    if(NOT LCOV_PATH)
+    if(NOT LCOV)
       message(FATAL_ERROR "lcov not found")
     endif()
 
-    if(NOT GENHTML_PATH)
+    if(NOT GENHTML)
       message(FATAL_ERROR "genhtml not found")
     endif()
 
+    # --include '${CMAKE_SOURCE_DIR}/src/*'
     add_custom_target(
       coverage
-      COMMAND ${LCOV_PATH} -d . -z
-      COMMAND ${TEST_PROGRAM_NAME} ${TEST_RUN_ARGS}
-      COMMAND ${LCOV_PATH} --include '${CMAKE_SOURCE_DIR}/*' -d . -c -o
-              coverage.info
-      COMMAND ${GENHTML_PATH} coverage.info -o coverage
+      COMMAND ${LCOV} -d . -z
+      COMMAND ${TEST_PROGRAM_NAME}
+      COMMAND ${LCOV} -d . --include '${CMAKE_SOURCE_DIR}/src/*.cpp' --include
+              '${CMAKE_SOURCE_DIR}/include/*.h' -c -o lcov.info
+      COMMAND ${GENHTML} lcov.info -o coverage
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME})
   else()
@@ -28,30 +29,29 @@ if(COVERAGE)
     set(CMAKE_CXX_FLAGS
         "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
 
-    find_program(LLVM_PROFDATA_PATH NAMES llvm-profdata)
-    find_program(LLVM_COV_PATH NAMES llvm-cov)
+    find_program(LLVM_PROFDATA NAMES llvm-profdata)
+    find_program(LLVM_COV NAMES llvm-cov)
 
-    if(NOT LLVM_PROFDATA_PATH)
+    if(NOT LLVM_PROFDATA)
       message(FATAL_ERROR "llvm-profdata not found")
     endif()
 
-    if(NOT LLVM_COV_PATH)
+    if(NOT LLVM_COV)
       message(FATAL_ERROR "llvm-cov not found")
     endif()
 
     add_custom_target(
       coverage
-      COMMAND ${TEST_PROGRAM_NAME} ${TEST_RUN_ARGS}
-      COMMAND ${LLVM_PROFDATA_PATH} merge -sparse -o
-              ${TEST_PROGRAM_NAME}.profdata default.profraw
+      COMMAND ${TEST_PROGRAM_NAME}
+      COMMAND ${LLVM_PROFDATA} merge -sparse -o ${TEST_PROGRAM_NAME}.profdata
+              default.profraw
       COMMAND
-        ${LLVM_COV_PATH} show ${TEST_PROGRAM_NAME}
+        ${LLVM_COV} show ${TEST_PROGRAM_NAME}
         -instr-profile=${TEST_PROGRAM_NAME}.profdata -format=html
         -output-dir=coverage
       COMMAND
-        ${LLVM_COV_PATH} export ${TEST_PROGRAM_NAME}
-        -instr-profile=${TEST_PROGRAM_NAME}.profdata -format=lcov >
-        coverage.info
+        ${LLVM_COV} export ${TEST_PROGRAM_NAME}
+        -instr-profile=${TEST_PROGRAM_NAME}.profdata -format=lcov > lcov.info
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME})
   endif()

@@ -13,7 +13,7 @@ jobs:
       - name: Install
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel cmake gtest
+          pacman -S --noconfirm base-devel cmake gtest wget
           wget https://github.com/linux-test-project/lcov/releases/download/v1.15/lcov-1.15.tar.gz
           tar -xzvf lcov-1.15.tar.gz
           cd lcov-1.15

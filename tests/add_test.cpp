@@ -2,4 +2,7 @@
 
 #include "add.h"
 
-TEST(add_test, test1) { ASSERT_EQ(add(1, 2), 3); }
+TEST(add_test, test1) {
+  Bar bar;
+  ASSERT_EQ(add(1, 2), 3);
+}
