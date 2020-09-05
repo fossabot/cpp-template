@@ -31,7 +31,6 @@ A template for C++ projects using CMake
 
 - https://github.com/google/sanitizers/wiki/AddressSanitizer
 - https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
-- https://github.com/google/sanitizers/wiki/MemorySanitizer
 - https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual
 - https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
 
