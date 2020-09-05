@@ -5,17 +5,21 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: archlinux
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install
         run: |
-          sudo apt install g++10 googletest lcov
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel cmake gtest
+          wget https://github.com/linux-test-project/lcov/releases/download/v1.15/lcov-1.15.tar.gz
+          tar -xzvf lcov-1.15.tar.gz
+          cd lcov-1.15
+          make install
 
       - name: Configure
-        env:
-          CXX: ${{ g++-10 }}
         run: cmake -S . -B build -DCOVERAGE=ON
 
       - name: Build

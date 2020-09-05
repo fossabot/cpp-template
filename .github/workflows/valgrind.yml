@@ -5,17 +5,17 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: archlinux
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install
         run: |
-          sudo apt install g++10 googletest valgrind
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel cmake gtest valgrind
 
       - name: Configure
-        env:
-          CXX: g++10
         run: cmake -S . -B build -DVALGRIND=ON
 
       - name: Build

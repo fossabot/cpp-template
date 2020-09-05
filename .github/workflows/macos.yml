@@ -18,12 +18,11 @@ jobs:
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
           cmake --build build -j`sysctl -n hw.ncpu`
           sudo cmake --build build --target install
-          echo "export CPLUS_INCLUDE_PATH=/usr/local/include" >> ~/.bash_profile
-          echo "export LIBRARY_PATH=/usr/local/lib" >> ~/.bash_profile
-          source ~/.bash_profile
 
       - name: Configure
         run: cmake -S . -B build
+        env:
+          CPLUS_INCLUDE_PATH: "/usr/local/include"
 
       - name: Build
         run: cmake --build build -j`sysctl -n hw.ncpu`

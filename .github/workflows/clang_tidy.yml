@@ -5,17 +5,17 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: archlinux
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install
         run: |
-          sudo apt install g++10 llvm-toolchain-10 googletest
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel clang cmake gtest
 
       - name: Configure
-        env:
-          CXX: g++10
         run: cmake -S . -B build -DCLANG_TIDY=ON
 
       - name: Build

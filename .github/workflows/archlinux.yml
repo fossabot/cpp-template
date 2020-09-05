@@ -5,16 +5,18 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: archlinux
     strategy:
       matrix:
-        compiler: [g++-10, clang++-10]
+        compiler: [g++, clang++]
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install
         run: |
-          sudo apt install g++10 llvm-toolchain-10 googletest
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel clang lld cmake gtest
 
       - name: Configure
         env:
