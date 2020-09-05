@@ -14,6 +14,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
                                              "RelWithDebInfo"))
     string(APPEND CMAKE_CXX_FLAGS " -fstandalone-debug")
   endif()
+else()
+  # FIXME
+  if(NOT CLANG_TIDY)
+    string(APPEND CMAKE_CXX_FLAGS " -fanalyzer")
+  endif()
 endif()
 
 if((CMAKE_BUILD_TYPE STREQUAL "Release") OR (CMAKE_BUILD_TYPE STREQUAL
