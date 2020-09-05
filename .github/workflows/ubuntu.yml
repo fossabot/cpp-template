@@ -4,8 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    # TODO use ubuntu-latest
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         compiler: [g++-10, clang++-10]
@@ -15,8 +14,6 @@ jobs:
 
       - name: Install
         run: |
-          sudo apt update
-          sudo apt upgrade
           sudo apt install g++10 llvm-toolchain-10 googletest
 
       - name: Configure
