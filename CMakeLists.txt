@@ -71,10 +71,8 @@ if(BUILD_TESTING)
 
   set(SANITIZER
       ""
-      CACHE
-        STRING
-        "Compile with a sanitizer. Options are: Address, Memory, Thread, Undefined"
-  )
+      CACHE STRING
+            "Compile with a sanitizer. Options are: Address, Thread, Undefined")
 
   enable_testing()
   find_package(GTest REQUIRED)
