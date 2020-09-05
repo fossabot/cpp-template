@@ -1,0 +1,25 @@
+name: Valgrind
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    # TODO use ubuntu-latest
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: apt install g++10 googletest valgrind
+
+      - name: Configure
+        env:
+          CXX: ${{ g++10 }}
+        run: cmake -S . -B build -DVALGRIND=ON
+
+      - name: Build
+        run: cmake --build build -j$(nproc)
+
+      - name: Test
+        run: cd build ; ctest -j$(nproc) --output-on-failure

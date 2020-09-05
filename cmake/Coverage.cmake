@@ -1,4 +1,4 @@
-if(${COVERAGE})
+if(COVERAGE)
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     message(STATUS "Building with LCOV code coverage tool")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")

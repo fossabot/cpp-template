@@ -1,0 +1,22 @@
+name: Clang-Tidy
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    # TODO use ubuntu-latest
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: apt install g++10 llvm-toolchain-10 googletest
+
+      - name: Configure
+        env:
+          CXX: ${{ g++10 }}
+        run: cmake -S . -B build -DCLANG_TIDY=ON
+
+      - name: Build
+        run: cmake --build build -j$(nproc)

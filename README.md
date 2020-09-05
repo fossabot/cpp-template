@@ -8,6 +8,11 @@
 
 A template for C++ projects using CMake
 
+## Reference
+
+https://packages.ubuntu.com/
+https://docs.github.com/cn/actions/reference/software-installed-on-github-hosted-runners
+https://github.com/github/codeql-action
 https://github.com/codecov/codecov-action
 
 https://cmake.org/cmake/help/latest/
@@ -15,8 +20,6 @@ https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
 https://clang.llvm.org/docs/ClangCommandLineReference.html
 
 https://github.com/linux-test-project/lcov
-https://clang.llvm.org/docs/SourceBasedCodeCoverage.html
-https://llvm.org/docs/CommandGuide/llvm-cov.html
 
 https://github.com/google/sanitizers/wiki/AddressSanitizer
 https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
@@ -28,3 +31,5 @@ https://clang.llvm.org/docs/ClangFormat.html
 
 https://clang.llvm.org/extra/clang-tidy/
 https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html
+
+TODO benchmarks

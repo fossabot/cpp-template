@@ -1,42 +1,28 @@
-name: CI
+name: Coverage
 
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: [push, pull_request]
 
 jobs:
-  ci:
-    runs-on: ubuntu-latest
-    container: archlinux
-    strategy:
-      matrix:
-        compiler: [g++, clang++]
+  build:
+    # TODO use ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install libraries and tools
-        run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel clang lld llvm cmake wget gtest
-          wget https://github.com/linux-test-project/lcov/releases/download/v1.15/lcov-1.15.tar.gz
-          tar -xzvf lcov-1.15.tar.gz
-          cd lcov-1.15
-          make install
+      - name: Install
+        run: apt install g++10 googletest lcov
 
-      - name: CMake
+      - name: Configure
         env:
-          CXX: ${{ matrix.compiler }}
-        run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=TRUE ..
+          CXX: ${{ g++-10 }}
+        run: cmake -S . -B build -DCOVERAGE=ON
 
-      - name: Gather coverage data
-        run: cmake --build build -j$(nproc) --target coverage
+      - name: Build
+        run: cmake --build build -j$(nproc) --target covergae
 
-      - name: Codecov upload
-        if: ${{ matrix.compiler == 'clang++' }}
-        uses: codecov/codecov-action@v1
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
         with:
-          file: build/coverage.info
-          fail_ci_if_error: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: build/lcov.info

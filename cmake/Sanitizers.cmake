@@ -23,5 +23,6 @@ elseif(SANITIZER STREQUAL "Thread")
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} -fsanitize=thread -fsanitize=undefined")
 else()
+  message(STATUS ${SANITIZER})
   message(FATAL_ERROR "The Sanitizer is not supported")
 endif()
