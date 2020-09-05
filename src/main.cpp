@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "add.h"
+#include "lib.h"
 
 int main()
 {
