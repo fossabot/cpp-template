@@ -20,10 +20,10 @@ jobs:
           make install
 
       - name: Configure
-        run: cmake -S . -B build -DCOVERAGE=ON
+        run: cmake -S . -B build -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
 
       - name: Build
-        run: cmake --build build -j$(nproc) --target covergae
+        run: cmake --build build -j$(nproc) --target coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
