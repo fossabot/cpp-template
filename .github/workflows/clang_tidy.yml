@@ -15,7 +15,7 @@ jobs:
 
       - name: Configure
         env:
-          CXX: ${{ g++10 }}
+          CXX: g++10
         run: cmake -S . -B build -DCLANG_TIDY=ON
 
       - name: Build
