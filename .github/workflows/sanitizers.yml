@@ -3,7 +3,7 @@ name: Sanitizers
 on: [push, pull_request]
 
 jobs:
-  address:
+  address-archlinux:
     runs-on: ubuntu-latest
     container: archlinux
     strategy:
@@ -19,17 +19,17 @@ jobs:
           pacman -S --noconfirm base-devel clang lld llvm cmake gtest
 
       - name: Configure
-        run: cmake -S . -B build -DSANITIZER=Address
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Address
         env:
           CXX: ${{ matrix.compiler }}
 
       - name: Build
-        run: cmake --build build --config Release -j$(nproc)
+        run: cmake --build build --config RelWithDebInfo -j$(nproc)
 
       - name: Test
-        run: cd build ; ctest -C Release -j$(nproc) --output-on-failure
+        run: cd build ; ctest -C RelWithDebInfo -j$(nproc) --output-on-failure
 
-  thread:
+  thread-archlinux:
     runs-on: ubuntu-latest
     container: archlinux
     strategy:
@@ -45,17 +45,17 @@ jobs:
           pacman -S --noconfirm base-devel clang lld llvm cmake gtest
 
       - name: Configure
-        run: cmake -S . -B build -DSANITIZER=Thread
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Thread
         env:
           CXX: ${{ matrix.compiler }}
 
       - name: Build
-        run: cmake --build build --config Release -j$(nproc)
+        run: cmake --build build --config RelWithDebInfo -j$(nproc)
 
       - name: Test
-        run: cd build ; ctest -C Release -j$(nproc) --output-on-failure
+        run: cd build ; ctest -C RelWithDebInfo -j$(nproc) --output-on-failure
 
-  undefined:
+  undefined-archlinux:
     runs-on: ubuntu-latest
     container: archlinux
     strategy:
@@ -71,12 +71,99 @@ jobs:
           pacman -S --noconfirm base-devel clang lld llvm cmake gtest
 
       - name: Configure
-        run: cmake -S . -B build -DSANITIZER=Undefined
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Undefined
         env:
           CXX: ${{ matrix.compiler }}
 
       - name: Build
-        run: cmake --build build --config Release -j$(nproc)
+        run: cmake --build build --config RelWithDebInfo -j$(nproc)
 
       - name: Test
-        run: cd build ; ctest -C Release -j$(nproc) --output-on-failure
+        run: cd build ; ctest -C RelWithDebInfo -j$(nproc) --output-on-failure
+
+  address-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          brew update
+          brew install unzip
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j`sysctl -n hw.ncpu`
+          sudo cmake --build build --config Release --target install
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Address
+
+      - name: Build
+        run: cmake --build build --config RelWithDebInfo -j`sysctl -n hw.ncpu`
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
+
+      - name: Test
+        run: cd build ; ctest -C RelWithDebInfo -j`sysctl -n hw.ncpu` --output-on-failure
+
+  thread-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          brew update
+          brew install unzip
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j`sysctl -n hw.ncpu`
+          sudo cmake --build build --config Release --target install
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Thread
+
+      - name: Build
+        run: cmake --build build --config RelWithDebInfo -j`sysctl -n hw.ncpu`
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
+
+      - name: Test
+        run: cd build ; ctest -C RelWithDebInfo -j`sysctl -n hw.ncpu` --output-on-failure
+
+  undefined-macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          brew update
+          brew install unzip
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j`sysctl -n hw.ncpu`
+          sudo cmake --build build --config Release --target install
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Undefined
+
+      - name: Build
+        run: cmake --build build --config RelWithDebInfo -j`sysctl -n hw.ncpu`
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
+
+      - name: Test
+        run: cd build ; ctest -C RelWithDebInfo -j`sysctl -n hw.ncpu` --output-on-failure

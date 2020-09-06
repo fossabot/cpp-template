@@ -3,7 +3,7 @@ name: Coverage
 on: [push, pull_request]
 
 jobs:
-  build:
+  archlinux:
     runs-on: ubuntu-latest
     container: archlinux
     strategy:
@@ -36,3 +36,29 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: build/lcov.info
+
+  macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          brew update
+          brew install unzip
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j`sysctl -n hw.ncpu`
+          sudo cmake --build build --config Release --target install
+
+      - name: Configure
+        run: cmake -S . -B build -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
+
+      - name: Build
+        run: cmake --build build --config Debug -j`sysctl -n hw.ncpu` --target coverage
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include

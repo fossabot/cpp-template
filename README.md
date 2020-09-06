@@ -13,19 +13,21 @@ A template for C++ projects using CMake
 ### Github Action
 
 - https://docs.github.com/cn/actions
-- https://github.com/github/codeql-action
-- https://github.com/codecov/codecov-action
+- https://github.com/actions/virtual-environments
+- https://github.com/coverallsapp/github-action
 
 ### CMake
 
 - https://cmake.org/cmake/help/latest/
 - https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
 - https://clang.llvm.org/docs/ClangCommandLineReference.html
+- https://docs.microsoft.com/zh-cn/cpp/build/reference/compiler-options?view=vs-2019
 
 ### Coverage
 
 - https://github.com/linux-test-project/lcov
 - https://llvm.org/docs/CommandGuide/llvm-cov.html
+- https://clang.llvm.org/docs/SourceBasedCodeCoverage.html
 
 ### Sanitizer
 
@@ -37,6 +39,7 @@ A template for C++ projects using CMake
 ### Tools
 
 - https://www.valgrind.org/docs/manual/manual.html
+- https://github.com/cheshirekow/cmake_format
 - https://clang.llvm.org/docs/ClangFormat.html
 - https://clang.llvm.org/extra/clang-tidy/
 - https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html
