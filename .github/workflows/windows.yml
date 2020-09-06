@@ -18,7 +18,7 @@ jobs:
         run: cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build
-        run: cmake --build build --config Release -j4 -- /p:VcpkgEnabled=true
+        run: cmake --build build --config Release -j((wmic cpu get NumberOfLogicalProcessors/Format:List) -replace '\D+(\d+)','$1') -- /p:VcpkgEnabled=true
 
       - name: Test
-        run: cd build ; ctest -C Release -j4 --output-on-failure
+        run: cd build ; ctest -C Release -j((wmic cpu get NumberOfLogicalProcessors/Format:List) -replace '\D+(\d+)','$1') --output-on-failure
