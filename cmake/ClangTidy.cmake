@@ -1,5 +1,5 @@
 if(CLANG_TIDY)
-  find_program(CLANG_TIDY_PATH NAMES clang-tidy clang-tidy.exe)
+  find_program(CLANG_TIDY_PATH clang-tidy)
 
   if(NOT CLANG_TIDY_PATH)
     message(FATAL_ERROR "clang-tidy not found")

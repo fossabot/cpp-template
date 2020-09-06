@@ -1,5 +1,5 @@
 if(FORMAT)
-  find_program(CLANG_FORMAT_PATH NAMES clang-format clang-format.exe)
+  find_program(CLANG_FORMAT_PATH clang-format)
 
   if(NOT CLANG_FORMAT_PATH)
     message(FATAL_ERROR "clang-format not found")
