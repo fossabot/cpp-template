@@ -1,5 +1,5 @@
 if(FORMAT)
-  find_program(CLANG_FORMAT_PATH NAMES clang-format)
+  find_program(CLANG_FORMAT_PATH NAMES clang-format clang-format.exe)
 
   if(NOT CLANG_FORMAT_PATH)
     message(FATAL_ERROR "clang-format not found")
@@ -12,7 +12,7 @@ if(FORMAT)
   add_dependencies(${PROGRAM_NAME} clang_format)
   add_dependencies(${TEST_PROGRAM_NAME} clang_format)
 
-  find_program(CMAKE_FORMAT_PATH NAMES cmake-format)
+  find_program(CMAKE_FORMAT_PATH cmake-format)
 
   if(NOT CMAKE_FORMAT_PATH)
     message(FATAL_ERROR "cmake-format not found")
