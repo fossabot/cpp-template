@@ -25,6 +25,9 @@ jobs:
 
       - name: Build
         run: cmake --build build --config Release -j`sysctl -n hw.ncpu`
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
 
       - name: Test
         run: cd build ; ctest -C Release -j`sysctl -n hw.ncpu` --output-on-failure
