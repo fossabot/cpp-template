@@ -27,7 +27,7 @@ if(COVERAGE)
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME}
       COMMENT "Generating HTML report build/coverage/index.html")
-  elseif(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
+  else()
     message(STATUS "Building with llvm-cov code coverage tool")
     string(APPEND CMAKE_CXX_FLAGS
            " -fprofile-instr-generate -fcoverage-mapping")
@@ -61,7 +61,5 @@ if(COVERAGE)
       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME}
       COMMENT "Generating HTML report build/coverage/index.html")
-  else()
-    message(FATAL_ERROR "MSVC does not support coverage")
   endif()
 endif()

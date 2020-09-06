@@ -19,9 +19,9 @@ jobs:
           pacman -S --noconfirm base-devel clang lld llvm cmake gtest
 
       - name: Configure
+        run: cmake -S . -B build
         env:
           CXX: ${{ matrix.compiler }}
-        run: cmake -S . -B build
 
       - name: Build
         run: cmake --build build --config Release -j$(nproc)

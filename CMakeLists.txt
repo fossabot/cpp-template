@@ -44,16 +44,19 @@ if(BUILD_TESTING)
 
   if(NOT (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC"))
     option(COVERAGE "Build test suite with coverage information" OFF)
+    include(Coverage)
   endif()
 
   if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Windows"))
     option(VALGRIND "Execute test suite with Valgrind" OFF)
+    include(Valgrind)
   endif()
 
   set(SANITIZER
       ""
       CACHE STRING
             "Compile with a sanitizer. Options are: Address, Thread, Undefined")
+  include(Sanitizers)
 
   enable_testing()
   find_package(GTest REQUIRED)
@@ -62,10 +65,6 @@ if(BUILD_TESTING)
   target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME}
                                                      ${GTEST_LIBRARIES})
   gtest_discover_tests(${TEST_PROGRAM_NAME})
-
-  include(Coverage)
-  include(Sanitizers)
-  include(Valgrind)
 endif()
 
 include(Format)
