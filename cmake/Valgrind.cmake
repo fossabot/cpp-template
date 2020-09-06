@@ -1,10 +1,11 @@
 if(VALGRIND)
-  message(STATUS "Executing test suite with Valgrind")
-  find_program(VALGRIND_PATH valgrind)
+  find_program(VALGRIND_PATH NAMES valgrind)
 
   if(NOT VALGRIND_PATH)
     message(FATAL_ERROR "valgrind not found")
   endif()
+
+  message(STATUS "Executing test suite with Valgrind")
 
   add_test(
     NAME "${TEST_PROGRAM_NAME}-valgrind"
