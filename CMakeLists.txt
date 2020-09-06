@@ -42,8 +42,13 @@ target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
 if(BUILD_TESTING)
   message(STATUS "Building test suite")
 
-  option(COVERAGE "Build test suite with coverage information" OFF)
-  option(VALGRIND "Execute test suite with Valgrind" OFF)
+  if(NOT (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC"))
+    option(COVERAGE "Build test suite with coverage information" OFF)
+  endif()
+
+  if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Windows"))
+    option(VALGRIND "Execute test suite with Valgrind" OFF)
+  endif()
 
   set(SANITIZER
       ""

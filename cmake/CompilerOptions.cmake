@@ -34,6 +34,6 @@ if((CMAKE_BUILD_TYPE STREQUAL "Release") OR (CMAKE_BUILD_TYPE STREQUAL
     message(STATUS "IPO / LTO enabled")
     set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
   else()
-    message(STATUS "IPO / LTO not supported: <${error}>")
+    message(FATAL_ERROR "IPO / LTO not supported: <${error}>")
   endif()
 endif()
