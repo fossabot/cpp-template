@@ -1,4 +1,8 @@
 if(VALGRIND)
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    message(FATAL_ERROR "Windows does not support valgrind")
+  endif()
+
   message(STATUS "Executing test suite with Valgrind")
   find_program(VALGRIND_PATH valgrind)
 

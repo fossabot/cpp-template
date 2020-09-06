@@ -1,0 +1,24 @@
+name: Windows
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          vcpkg install gtest:x64-windows
+          vcpkg integrate install
+
+      - name: Configure
+        run: cmake -S . -B build -G "Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+      - name: Build
+        run: cmake --build build --config Release -j4 -- /p:VcpkgEnabled=true
+
+      - name: Test
+        run: cd build ; ctest -C Release -j4 --output-on-failure

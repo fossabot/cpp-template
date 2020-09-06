@@ -24,4 +24,4 @@ jobs:
           CXX: ${{ matrix.compiler }}
 
       - name: Build
-        run: cmake --build build -j$(nproc)
+        run: cmake --build build --config Release -j$(nproc)

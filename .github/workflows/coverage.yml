@@ -28,7 +28,7 @@ jobs:
           CXX: ${{ matrix.compiler }}
 
       - name: Build
-        run: cmake --build build -j$(nproc) --target coverage
+        run: cmake --build build --config Debug -j$(nproc) --target coverage
 
       - name: Coveralls
         if: ${{ matrix.compiler == 'clang++' }}

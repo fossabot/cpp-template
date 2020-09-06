@@ -24,7 +24,7 @@ jobs:
           CXX: ${{ matrix.compiler }}
 
       - name: Build
-        run: cmake --build build -j$(nproc)
+        run: cmake --build build --config Release -j$(nproc)
 
       - name: Test
-        run: cd build ; ctest -j$(nproc) --output-on-failure
+        run: cd build ; ctest -C Release -j$(nproc) --output-on-failure

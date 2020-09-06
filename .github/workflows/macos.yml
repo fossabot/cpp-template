@@ -1,0 +1,30 @@
+name: macOS
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          brew update
+          brew install unzip
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j'sysctl -n hw.ncpu'
+          cmake --build build --config Release --target install
+
+      - name: Configure
+        run: cmake -S . -B build
+
+      - name: Build
+        run: cmake --build build --config Release -j'sysctl -n hw.ncpu'
+
+      - name: Test
+        run: cd build ; ctest -C Release -j'sysctl -n hw.ncpu' --output-on-failure
