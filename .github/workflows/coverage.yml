@@ -18,7 +18,7 @@ jobs:
           pacman -Syu --noconfirm
           pacman -S --noconfirm base-devel clang lld llvm cmake gtest wget unzip
           wget https://github.com/linux-test-project/lcov/archive/v1.15.zip
-          unzip lcov-1.15.zip
+          unzip v1.15.zip
           cd lcov-1.15
           make install
 
