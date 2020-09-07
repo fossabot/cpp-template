@@ -3,14 +3,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  string(APPEND CMAKE_CXX_FLAGS " /W4 /WX")
+if(MSVC)
+  string(APPEND CMAKE_CXX_FLAGS
+         " /nologo /EHsc /GF /errorReport:queue /FC /W4 /WX")
 else()
   string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wpedantic -Werror")
 endif()
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
-  if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
+if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
+  if(NOT APPLE)
     add_link_options(-fuse-ld=lld)
   endif()
 
@@ -18,7 +19,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?[Cc]lang")
                                              "RelWithDebInfo"))
     string(APPEND CMAKE_CXX_FLAGS " -fstandalone-debug")
   endif()
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+elseif(CMAKE_COMPILER_IS_GNUCXX)
   # FIXME
   if(NOT CLANG_TIDY)
     string(APPEND CMAKE_CXX_FLAGS " -fanalyzer")

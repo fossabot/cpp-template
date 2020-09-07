@@ -1,10 +1,10 @@
 if(COVERAGE)
-  if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  if(CMAKE_COMPILER_IS_GNUCXX)
     message(STATUS "Building with LCOV code coverage tool")
     string(APPEND CMAKE_CXX_FLAGS " --coverage")
 
-    find_program(LCOV_PATH NAMES lcov)
-    find_program(GENHTML_PATH NAMES genhtml)
+    find_program(LCOV_PATH lcov)
+    find_program(GENHTML_PATH genhtml)
 
     if(NOT LCOV_PATH)
       message(FATAL_ERROR "lcov not found")
@@ -32,8 +32,8 @@ if(COVERAGE)
     string(APPEND CMAKE_CXX_FLAGS
            " -fprofile-instr-generate -fcoverage-mapping")
 
-    find_program(LLVM_PROFDATA_PATH NAMES llvm-profdata)
-    find_program(LLVM_COV_PATH NAMES llvm-cov)
+    find_program(LLVM_PROFDATA_PATH llvm-profdata)
+    find_program(LLVM_COV_PATH llvm-cov)
 
     if(NOT LLVM_PROFDATA_PATH)
       message(FATAL_ERROR "llvm-profdata not found")
