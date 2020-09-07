@@ -20,6 +20,14 @@ if(SANITIZER)
 
     message(STATUS "Building with UndefinedSanitizer")
     string(APPEND CMAKE_CXX_FLAGS " -fsanitize=undefined")
+
+    if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
+      string(
+        APPEND
+        CMAKE_CXX_FLAGS
+        " -fsanitize=float-divide-by-zero -fsanitize=local-bounds -fsanitize=implicit-conversion -fsanitize=integer -fsanitize=nullability"
+      )
+    endif()
   else()
     message(FATAL_ERROR "The Sanitizer is not supported: ${SANITIZER}")
   endif()
