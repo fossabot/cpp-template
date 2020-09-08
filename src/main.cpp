@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <filesystem>
 #include <iostream>
 #include <vector>
 
@@ -12,4 +13,6 @@ int main()
     v.push_back(3);
 
     std::cout << add(1, 2) << '\n';
+
+    std::cout << std::filesystem::current_path() << '\n';
 }

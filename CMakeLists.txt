@@ -29,14 +29,14 @@ file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS
 file(GLOB_RECURSE CMAKE_FORMAT_SOURCES CONFIGURE_DEPENDS
      ${CMAKE_SOURCE_DIR}/cmake/*.cmake ${CMAKE_SOURCE_DIR}/CMakeLists.txt)
 
-set(LIB_NAME lib${PROJECT_NAME})
-set(PROGRAM_NAME ${PROJECT_NAME})
-set(TEST_PROGRAM_NAME ${PROJECT_NAME}-test)
+set(PROGRAM_NAME test-program)
+set(LIB_NAME lib${PROGRAM_NAME})
+set(TEST_PROGRAM_NAME ${PROJECT_NAME}-gtest)
 
 add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
 
 add_library(${LIB_NAME} OBJECT ${LIB_SOURCES})
-target_include_directories(${LIB_NAME} PUBLIC include)
+target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 add_executable(${PROGRAM_NAME} ${SOURCES})
 target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
