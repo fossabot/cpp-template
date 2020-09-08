@@ -24,7 +24,7 @@ if(COVERAGE)
         lcov_branch_coverage=1
       COMMAND ${GENHTML_PATH} lcov.info -o coverage -s --title "${PROJECT_NAME}"
               --legend --demangle-cpp --branch-coverage
-      WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME}
       COMMENT "Generating HTML report build/coverage/index.html")
   else()
@@ -58,7 +58,7 @@ if(COVERAGE)
         -instr-profile=${TEST_PROGRAM_NAME}.profdata
         -ignore-filename-regex=${CMAKE_CURRENT_SOURCE_DIR}/tests/* -format=lcov
         > lcov.info
-      WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME}
       COMMENT "Generating HTML report build/coverage/index.html")
   endif()
