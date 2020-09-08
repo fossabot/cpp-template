@@ -26,7 +26,9 @@ if(COVERAGE)
               --legend --demangle-cpp --branch-coverage
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME}
-      COMMENT "Generating HTML report build/coverage/index.html")
+      COMMENT
+        "Generating HTML report ${CMAKE_CURRENT_BINARY_DIR}/coverage/index.html"
+    )
   else()
     message(STATUS "Building with llvm-cov code coverage tool")
     string(APPEND CMAKE_CXX_FLAGS
@@ -60,6 +62,8 @@ if(COVERAGE)
         > lcov.info
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME}
-      COMMENT "Generating HTML report build/coverage/index.html")
+      COMMENT
+        "Generating HTML report ${CMAKE_CURRENT_BINARY_DIR}/coverage/index.html"
+    )
   endif()
 endif()
