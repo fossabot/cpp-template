@@ -1,10 +1,6 @@
 name: CodeQL
 
-on:
-  push:
-  pull_request:
-  schedule:
-    - cron: "0 0 * * *"
+on: [push, pull_request]
 
 jobs:
   ubuntu:
@@ -43,7 +39,7 @@ jobs:
         run: cmake -S . -B build
 
       - name: Build
-        run: cmake --build build --config Release -j`sysctl -n hw.ncpu`
+        run: cmake --build build --config Release -j$(nproc)
         env:
           CXX: ${{ matrix.compiler }}
 
