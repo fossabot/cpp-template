@@ -61,11 +61,15 @@ if(BUILD_TESTING)
   endif()
 
   enable_testing()
+
+  set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+  find_package(Threads REQUIRED)
   find_package(GTest REQUIRED)
 
   add_executable(${TEST_PROGRAM_NAME} ${TEST_SOURCES})
-  target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME}
-                                                     ${GTEST_LIBRARIES})
+  target_link_libraries(
+    ${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME} ${GTEST_LIBRARIES}
+                                 ${CMAKE_THREAD_LIBS_INIT})
   gtest_discover_tests(${TEST_PROGRAM_NAME})
 endif()
 
