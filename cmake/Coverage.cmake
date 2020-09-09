@@ -3,8 +3,19 @@ if(COVERAGE)
     message(STATUS "Building test suite with coverage information, use lcov")
     string(APPEND CMAKE_CXX_FLAGS " --coverage")
 
+    get_filename_component(COMPILER_PATH "${CMAKE_CXX_COMPILER}" PATH)
+    string(REGEX MATCH "^[0-9]+" GCC_VERSION "${CMAKE_CXX_COMPILER_VERSION}")
+    find_program(
+      GCOV_PATH
+      NAMES gcov-${GCC_VERSION} gcov
+      HINTS ${COMPILER_PATH})
+
     find_program(LCOV_PATH lcov)
     find_program(GENHTML_PATH genhtml)
+
+    if(NOT GCOV_PATH)
+      message(FATAL_ERROR "Can not find gcov")
+    endif()
 
     if(NOT LCOV_PATH)
       message(FATAL_ERROR "Can not find lcov")
@@ -20,8 +31,8 @@ if(COVERAGE)
       COMMAND ${TEST_PROGRAM_NAME}
       COMMAND
         ${LCOV_PATH} -d . --include '${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp'
-        --include '${CMAKE_CURRENT_SOURCE_DIR}/include/*.h' -c -o lcov.info --rc
-        lcov_branch_coverage=1
+        --include '${CMAKE_CURRENT_SOURCE_DIR}/include/*.h' --gcov-tool
+        ${GCOV_PATH} -c -o lcov.info --rc lcov_branch_coverage=1
       COMMAND ${GENHTML_PATH} lcov.info -o coverage -s --title "${PROJECT_NAME}"
               --legend --demangle-cpp --branch-coverage
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
