@@ -1,10 +1,8 @@
 if(CLANG_TIDY)
-  if(NOT WIN32)
-    find_program(CLANG_TIDY_PATH clang-tidy)
+  find_program(CLANG_TIDY_PATH clang-tidy)
 
-    if(NOT CLANG_TIDY_PATH)
-      message(FATAL_ERROR "Can not find clang-tidy")
-    endif()
+  if(NOT CLANG_TIDY_PATH)
+    message(FATAL_ERROR "Can not find clang-tidy")
   endif()
 
   message(STATUS "Found clang-tidy")
