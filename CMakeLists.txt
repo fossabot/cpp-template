@@ -10,11 +10,14 @@ include(CTest)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(Check)
 include(CompilerOptions)
-include(ClangTidy)
 
 option(BUILD_TESTING "Build test suite" ON)
-option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
 option(FORMAT "Format code" OFF)
+
+if(NOT MSVC)
+  option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
+  include(ClangTidy)
+endif()
 
 set(SANITIZER
     ""
