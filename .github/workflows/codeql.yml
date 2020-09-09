@@ -29,7 +29,7 @@ jobs:
       - name: Install
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel clang lld llvm cmake gtest
+          pacman -S --noconfirm base-devel clang lld llvm cmake gtest git
 
       - name: Configure
         run: cmake -S . -B build

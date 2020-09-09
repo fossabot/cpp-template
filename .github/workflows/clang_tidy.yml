@@ -51,3 +51,20 @@ jobs:
         env:
           C_INCLUDE_PATH: /usr/local/include
           CPLUS_INCLUDE_PATH: /usr/local/include
+
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          vcpkg install gtest:x64-windows
+          vcpkg integrate install
+
+      - name: Configure
+        run: cmake -S . -B build  -DCLANG_TIDY=ON -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+      - name: Build
+        run: cmake --build build --config Release -j((wmic cpu get NumberOfLogicalProcessors/Format:List) -replace '\D+(\d+)','$1') -- /p:VcpkgEnabled=true
