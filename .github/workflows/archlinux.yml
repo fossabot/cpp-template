@@ -4,19 +4,18 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container: archlinux
-    strategy:
+    runs-on: ubuntu-20.04
       matrix:
-        compiler: [g++, clang++]
+        compiler: [g++-10, clang++-10]
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Install
         run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel clang lld llvm cmake gtest
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
+          sudo apt update ; sudo apt upgrade
+          sudo apt install g++-10 clang lld llvm googletest
 
       - name: Configure
         run: cmake -S . -B build
