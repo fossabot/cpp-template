@@ -2,8 +2,3 @@ name: CodeQL-Config
 
 queries:
   - uses: security-and-quality
-
-# FIXME
-# paths:
-#   - include
-#   - src
