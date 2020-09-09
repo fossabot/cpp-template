@@ -15,7 +15,7 @@ jobs:
       - name: Install
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
-          sudo apt update ; sudo apt upgrade
+          sudo apt update
           sudo apt install g++-10 clang lld llvm googletest
 
       - name: Configure
