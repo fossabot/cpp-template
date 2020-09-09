@@ -3,9 +3,8 @@ name: Sanitizers
 on: [push, pull_request]
 
 jobs:
-  address-archlinux:
-    runs-on: ubuntu-latest
-    container: archlinux
+  address-ubuntu:
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         compiler: [g++, clang++]
@@ -15,8 +14,15 @@ jobs:
 
       - name: Install
         run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel clang lld llvm cmake gtest
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
+          sudo apt update
+          sudo apt install g++-10 clang lld llvm
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j$(nproc)
+          sudo cmake --build build --config Release --target install
 
       - name: Configure
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Address
@@ -29,9 +35,8 @@ jobs:
       - name: Test
         run: cd build ; ctest -C RelWithDebInfo -j$(nproc) --output-on-failure
 
-  thread-archlinux:
-    runs-on: ubuntu-latest
-    container: archlinux
+  thread-ubuntu:
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         compiler: [g++, clang++]
@@ -41,8 +46,15 @@ jobs:
 
       - name: Install
         run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel clang lld llvm cmake gtest
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
+          sudo apt update
+          sudo apt install g++-10 clang lld llvm
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j$(nproc)
+          sudo cmake --build build --config Release --target install
 
       - name: Configure
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Thread
@@ -55,9 +67,8 @@ jobs:
       - name: Test
         run: cd build ; ctest -C RelWithDebInfo -j$(nproc) --output-on-failure
 
-  undefined-archlinux:
-    runs-on: ubuntu-latest
-    container: archlinux
+  undefined-ubuntu:
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         compiler: [g++, clang++]
@@ -67,8 +78,15 @@ jobs:
 
       - name: Install
         run: |
-          pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel clang lld llvm cmake gtest
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
+          sudo apt update
+          sudo apt install g++-10 clang lld llvm
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j$(nproc)
+          sudo cmake --build build --config Release --target install
 
       - name: Configure
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Undefined
