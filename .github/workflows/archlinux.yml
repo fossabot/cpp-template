@@ -5,6 +5,7 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-20.04
+    strategy:
       matrix:
         compiler: [g++-10, clang++-10]
 
