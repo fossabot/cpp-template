@@ -62,7 +62,6 @@ jobs:
         run: |
           vcpkg install gtest:x64-windows
           vcpkg integrate install
-          $Env:path=$Env:Path+";C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\Llvm\x64\bin"
 
       - name: Configure
         run: cmake -S . -B build  -DCLANG_TIDY=ON -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
