@@ -1,6 +1,5 @@
 {
   "cmake.configureArgs": [
-    //"-DCLANG_TIDY=ON",
     "-DCOVERAGE=ON",
     "-DSANITIZER=Undefined",
     "-DFORMAT=ON"

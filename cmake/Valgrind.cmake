@@ -2,7 +2,7 @@ if(VALGRIND)
   find_program(VALGRIND_PATH valgrind)
 
   if(NOT VALGRIND_PATH)
-    message(FATAL_ERROR "valgrind not found")
+    message(FATAL_ERROR "Can not find valgrind")
   endif()
 
   message(STATUS "Executing test suite with Valgrind")

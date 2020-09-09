@@ -58,8 +58,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # FIXME
       - name: Install
         run: |
+          where clang-tidy
           vcpkg install gtest:x64-windows
           vcpkg integrate install
 

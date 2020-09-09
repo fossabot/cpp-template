@@ -1,17 +1,17 @@
 if(COVERAGE)
   if(CMAKE_COMPILER_IS_GNUCXX)
-    message(STATUS "Building with LCOV code coverage tool")
+    message(STATUS "Building test suite with coverage information, use lcov")
     string(APPEND CMAKE_CXX_FLAGS " --coverage")
 
     find_program(LCOV_PATH lcov)
     find_program(GENHTML_PATH genhtml)
 
     if(NOT LCOV_PATH)
-      message(FATAL_ERROR "lcov not found")
+      message(FATAL_ERROR "Can not find lcov")
     endif()
 
     if(NOT GENHTML_PATH)
-      message(FATAL_ERROR "genhtml not found")
+      message(FATAL_ERROR "Can not find genhtml")
     endif()
 
     add_custom_target(
@@ -30,7 +30,8 @@ if(COVERAGE)
         "Generating HTML report ${CMAKE_CURRENT_BINARY_DIR}/coverage/index.html"
     )
   else()
-    message(STATUS "Building with llvm-cov code coverage tool")
+    message(
+      STATUS "Building test suite with coverage information, use llvm-cov")
     string(APPEND CMAKE_CXX_FLAGS
            " -fprofile-instr-generate -fcoverage-mapping")
 
@@ -38,11 +39,11 @@ if(COVERAGE)
     find_program(LLVM_COV_PATH llvm-cov)
 
     if(NOT LLVM_PROFDATA_PATH)
-      message(FATAL_ERROR "llvm-profdata not found")
+      message(FATAL_ERROR "Can not find llvm-profdata")
     endif()
 
     if(NOT LLVM_COV_PATH)
-      message(FATAL_ERROR "llvm-cov not found")
+      message(FATAL_ERROR "Can not find llvm-cov")
     endif()
 
     add_custom_target(

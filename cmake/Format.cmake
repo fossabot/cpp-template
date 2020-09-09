@@ -2,10 +2,10 @@ if(FORMAT)
   find_program(CLANG_FORMAT_PATH clang-format)
 
   if(NOT CLANG_FORMAT_PATH)
-    message(FATAL_ERROR "clang-format not found")
+    message(FATAL_ERROR "Can not find clang-format")
   endif()
 
-  message(STATUS "clang-format found")
+  message(STATUS "Found clang-format")
   add_custom_target(clang_format COMMAND ${CLANG_FORMAT_PATH} -i -verbose
                                          ${CLANG_FORMAT_SOURCES})
   add_dependencies(${LIB_NAME} clang_format)
@@ -15,10 +15,10 @@ if(FORMAT)
   find_program(CMAKE_FORMAT_PATH cmake-format)
 
   if(NOT CMAKE_FORMAT_PATH)
-    message(FATAL_ERROR "cmake-format not found")
+    message(FATAL_ERROR "Can not find cmake-format")
   endif()
 
-  message(STATUS "cmake-format found")
+  message(STATUS "Found cmake-format")
   add_custom_target(cmake_format COMMAND ${CMAKE_FORMAT_PATH} -i
                                          ${CMAKE_FORMAT_SOURCES})
   add_dependencies(${LIB_NAME} clang_format)
