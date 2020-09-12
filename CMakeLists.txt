@@ -67,8 +67,7 @@ if(BUILD_TESTING)
   find_package(GTest REQUIRED)
 
   add_executable(${TEST_PROGRAM_NAME} ${TEST_SOURCES})
-  target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME}
-                                                     ${GTEST_LIBRARIES})
+  target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME} GTest::gtest)
   gtest_discover_tests(${TEST_PROGRAM_NAME})
 endif()
 
