@@ -21,7 +21,7 @@ if(FORMAT)
   message(STATUS "Found cmake-format")
   add_custom_target(cmake_format COMMAND ${CMAKE_FORMAT_PATH} -i
                                          ${CMAKE_FORMAT_SOURCES})
-  add_dependencies(${LIB_NAME} clang_format)
+  add_dependencies(${LIB_NAME} cmake_format)
   add_dependencies(${PROGRAM_NAME} cmake_format)
   add_dependencies(${TEST_PROGRAM_NAME} cmake_format)
 endif()
