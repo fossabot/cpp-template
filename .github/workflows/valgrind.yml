@@ -3,7 +3,7 @@ name: Valgrind
 on: [push, pull_request]
 
 jobs:
-  build:
+  ubuntu:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -38,3 +38,34 @@ jobs:
 
       - name: Test
         run: cd build ; ctest -C RelWithDebInfo -j$(nproc) --output-on-failure
+
+  macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          brew update
+          brew tap LouisBrunner/valgrind
+          brew install --HEAD LouisBrunner/valgrind/valgrind
+          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_GMOCK=OFF \
+          -DBUILD_SHARED_LIBS=ON -Dgtest_build_tests=OFF
+          cmake --build build --config Release -j`sysctl -n hw.ncpu`
+          sudo cmake --build build --config Release --target install
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DVALGRIND=ON
+
+      - name: Build
+        run: cmake --build build --config RelWithDebInfo -j`sysctl -n hw.ncpu`
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
+
+      - name: Test
+        run: cd build ; ctest -C RelWithDebInfo -j`sysctl -n hw.ncpu` --output-on-failure

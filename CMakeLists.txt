@@ -13,16 +13,13 @@ include(CompilerOptions)
 
 option(BUILD_TESTING "Build test suite" ON)
 option(FORMAT "Format code" OFF)
-
-if(NOT MSVC)
-  option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
-  include(ClangTidy)
-endif()
-
+option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
 set(SANITIZER
     ""
     CACHE STRING
           "Build with a sanitizer. Options are: Address, Thread, Undefined")
+
+include(ClangTidy)
 include(Sanitizers)
 
 set(PROGRAM_NAME test-program)
@@ -53,15 +50,11 @@ target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
 if(BUILD_TESTING)
   message(STATUS "Build test suite")
 
-  if(NOT MSVC)
-    option(COVERAGE "Build test suite with coverage information" OFF)
-    include(Coverage)
-  endif()
+  option(COVERAGE "Build test suite with coverage information" OFF)
+  option(VALGRIND "Execute test suite with Valgrind" OFF)
 
-  if(NOT WIN32)
-    option(VALGRIND "Execute test suite with Valgrind" OFF)
-    include(Valgrind)
-  endif()
+  include(Coverage)
+  include(Valgrind)
 
   enable_testing()
   find_package(GTest REQUIRED)

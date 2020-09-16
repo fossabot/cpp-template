@@ -5,14 +5,13 @@
 
 #include "lib.h"
 
-int main()
-{
-    std::vector<std::int32_t> v;
-    v.push_back(1);
-    v.push_back(2);
-    v.push_back(3);
+int main() {
+  std::vector<std::int32_t> v;
+  v.push_back(1);
+  v.push_back(2);
+  v.push_back(3);
 
-    std::cout << add(1, 2) << '\n';
+  std::cout << add(1, 2) << '\n';
 
-    std::cout << std::filesystem::current_path() << '\n';
+  std::cout << std::filesystem::current_path() << '\n';
 }

@@ -16,14 +16,12 @@ A template for C++ projects using CMake
 - https://github.com/actions/virtual-environments
 - https://github.com/coverallsapp/github-action
 - https://github.com/github/codeql-action
-- https://google.github.io/oss-fuzz/
 
 ### CMake
 
 - https://cmake.org/cmake/help/latest/
 - https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
 - https://clang.llvm.org/docs/ClangCommandLineReference.html
-- https://docs.microsoft.com/zh-cn/cpp/build/reference/compiler-options?view=vs-2019
 
 ### Coverage
 
@@ -41,7 +39,6 @@ A template for C++ projects using CMake
 ### Tools
 
 - https://www.valgrind.org/docs/manual/manual.html
-- https://github.com/microsoft/vcpkg
 - https://github.com/cheshirekow/cmake_format
 - https://clangd.llvm.org/
 - https://clang.llvm.org/docs/ClangFormat.html
