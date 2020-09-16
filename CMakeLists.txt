@@ -20,7 +20,7 @@ set(SANITIZER
           "Build with a sanitizer. Options are: Address, Thread, Undefined")
 
 include(ClangTidy)
-include(Sanitizers)
+include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
 set(LIB_NAME lib${PROGRAM_NAME})
