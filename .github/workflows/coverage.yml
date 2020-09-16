@@ -41,7 +41,7 @@ jobs:
         run: cmake --build build --config Debug -j$(nproc) --target coverage
 
       - name: Coveralls
-        if: ${{ matrix.compiler == 'clang++' }}
+        if: ${{ matrix.compiler == 'clang++-10' }}
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
