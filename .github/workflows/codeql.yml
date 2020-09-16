@@ -45,11 +45,11 @@ jobs:
 
       - name: Configure
         run: cmake -S . -B build
+        env:
+          CXX: ${{ matrix.compiler }}
 
       - name: Build
         run: cmake --build build --config Release -j$(nproc)
-        env:
-          CXX: ${{ matrix.compiler }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
