@@ -19,7 +19,7 @@ jobs:
       - name: Install
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
-          bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+          sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
           sudo apt update
           sudo apt install g++-10 clang-tidy
           wget https://github.com/google/googletest/archive/release-1.10.0.zip
