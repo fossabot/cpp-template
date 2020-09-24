@@ -75,5 +75,6 @@ jobs:
 
       - name: Test
         run: cd build ; ctest -C RelWithDebInfo -j`sysctl -n hw.ncpu` --output-on-failure
-        env:
-          ASAN_OPTIONS: detect_leaks=1
+        # FIXME
+        # env:
+          # ASAN_OPTIONS: detect_leaks=1
