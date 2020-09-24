@@ -51,7 +51,6 @@ jobs:
 
       - name: Install
         run: |
-          brew update
           brew tap LouisBrunner/valgrind
           brew install --HEAD LouisBrunner/valgrind/valgrind
           wget https://github.com/google/googletest/archive/release-1.10.0.zip
