@@ -162,7 +162,7 @@ jobs:
         env:
         # FIXME
         # ASAN_OPTIONS: detect_leaks=1
-        UBSAN_OPTIONS: print_stacktrace=1
+          UBSAN_OPTIONS: print_stacktrace=1
 
   macos-thread:
     runs-on: macos-latest
