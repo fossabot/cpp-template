@@ -5,8 +5,6 @@ project(
   VERSION 0.1.0
   LANGUAGES CXX)
 
-include(CTest)
-
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(Check)
 include(CompilerOptions)
