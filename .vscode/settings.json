@@ -2,6 +2,6 @@
   "cmake.configureArgs": [
     "-DCOVERAGE=ON",
     "-DSANITIZER=Address;Undefined",
-    "-DFORMAT=ON",
+    "-DFORMAT=ON"
   ]
 }
