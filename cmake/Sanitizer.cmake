@@ -3,10 +3,6 @@ if(SANITIZER)
     string(APPEND CMAKE_CXX_FLAGS " -fno-omit-frame-pointer")
   endif()
 
-  if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    string(APPEND CMAKE_CXX_FLAGS " -O1")
-  endif()
-
   macro(try_append_clang_undefined_sanitizer_flags)
     if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
       string(
