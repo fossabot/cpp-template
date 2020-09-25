@@ -3,6 +3,5 @@
     "-DCOVERAGE=ON",
     "-DSANITIZER=Address;Undefined",
     "-DFORMAT=ON",
-    //"-DCLANG_TIDY=ON"
   ]
 }
