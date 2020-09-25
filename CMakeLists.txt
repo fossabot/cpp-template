@@ -14,8 +14,10 @@ option(FORMAT "Format code" OFF)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
 set(SANITIZER
     ""
-    CACHE STRING
-          "Build with a sanitizer. Options are: Address, Thread, Undefined")
+    CACHE
+      STRING
+      "Build with a sanitizer. Options are: Address, Thread, Memory, Undefined and Address;Undefined"
+)
 
 include(ClangTidy)
 include(Sanitizer)
