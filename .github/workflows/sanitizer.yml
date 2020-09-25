@@ -21,7 +21,7 @@ jobs:
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update
           sudo apt install g++-10 llvm
-          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
           unzip -q release-1.10.0.zip
           cd googletest-release-1.10.0
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_GMOCK=OFF \
@@ -56,7 +56,7 @@ jobs:
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update
           sudo apt install g++-10
-          wget https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
+          wget -q https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
           unzip -q llvmorg-10.0.1.zip
           cd llvm-project-llvmorg-10.0.1
           cmake -S llvm -B build -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" \
@@ -64,7 +64,7 @@ jobs:
           cmake --build build --config Release -j$(nproc) --target cxx cxxabi
           sudo cmake --build build --config Release --target install-cxx install-cxxabi
           cd ..
-          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
           unzip -q release-1.10.0.zip
           cd googletest-release-1.10.0
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_GMOCK=OFF \
@@ -99,7 +99,7 @@ jobs:
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update
           sudo apt install g++-10 llvm
-          wget https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
+          wget -q https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
           unzip -q llvmorg-10.0.1.zip
           cd llvm-project-llvmorg-10.0.1
           cmake -S llvm -B build -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" \
@@ -107,7 +107,7 @@ jobs:
           cmake --build build --config Release -j$(nproc) --target cxx cxxabi
           sudo cmake --build build --config Release --target install-cxx install-cxxabi
           cd ..
-          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
           unzip -q release-1.10.0.zip
           cd googletest-release-1.10.0
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_GMOCK=OFF \
@@ -140,7 +140,7 @@ jobs:
       - name: Install
         run: |
           ln -s "$(brew --prefix llvm)/bin/llvm-symbolizer" "/usr/local/bin/llvm-symbolizer"
-          wget https://github.com/google/googletest/archive/release-1.10.0.zip
+          wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
           unzip -q release-1.10.0.zip
           cd googletest-release-1.10.0
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_GMOCK=OFF \
@@ -163,3 +163,36 @@ jobs:
           UBSAN_OPTIONS: print_stacktrace=1
         # FIXME
         # ASAN_OPTIONS: detect_leaks=1
+
+  temp:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
+          sudo apt update
+          sudo apt install g++-10 llvm
+          wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
+          unzip -q release-1.10.0.zip
+          cd googletest-release-1.10.0
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_GMOCK=OFF \
+          -DBUILD_SHARED_LIBS=ON -Dgtest_build_tests=OFF
+          cmake --build build --config Release -j$(nproc)
+          sudo cmake --build build --config Release --target install
+        env:
+          CC: /usr/bin/clang-10
+          CXX: /usr/bin/clang++-10
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Memory
+        env:
+          CXX: /usr/bin/clang++-10
+
+      - name: Build
+        run: cmake --build build --config RelWithDebInfo -j$(nproc)
+
+      - name: Test
+        run: cd build ; ctest -C RelWithDebInfo -j$(nproc) --output-on-failure
