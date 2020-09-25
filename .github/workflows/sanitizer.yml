@@ -59,7 +59,7 @@ jobs:
           wget https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
           unzip llvmorg-10.0.1.zip
           cd llvm-project-llvmorg-10.0.1
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" \
+          cmake -S llvm -B build -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" \
           -DLLVM_USE_SANITIZER=Thread
           cmake --build build --config Release -j$(nproc)
           sudo cmake --build build --config Release --target install
@@ -101,7 +101,7 @@ jobs:
           wget https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
           unzip llvmorg-10.0.1.zip
           cd llvm-project-llvmorg-10.0.1
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" \
+          cmake -S llvm -B build -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi" \
           -DLLVM_USE_SANITIZER=MemoryWithOrigins
           cmake --build build --config Release -j$(nproc)
           sudo cmake --build build --config Release --target install
