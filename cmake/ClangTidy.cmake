@@ -6,5 +6,5 @@ if(CLANG_TIDY)
   endif()
 
   message(STATUS "Found clang-tidy")
-  set(CMAKE_CXX_CLANG_TIDY clang-tidy -header-filter=.*)
+  set(CMAKE_CXX_CLANG_TIDY clang-tidy)
 endif()
