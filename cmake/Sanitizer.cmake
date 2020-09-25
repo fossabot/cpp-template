@@ -30,7 +30,7 @@ if(SANITIZER)
 
     message(STATUS "Building with MemorySanitizer")
     string(APPEND CMAKE_CXX_FLAGS
-           " -fsanitize=memory -fsanitize-memory-track-origins -fPIE -pie")
+           " -fsanitize=memory -fsanitize-memory-track-origins -fPIE")
   elseif(SANITIZER STREQUAL "Undefined")
     message(STATUS "Building with UndefinedSanitizer")
 
