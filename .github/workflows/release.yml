@@ -39,8 +39,7 @@ jobs:
         run: |
           mkdir bin
           cp build/test-program build/test-program-gtest bin
-          ldd bin/test-program | awk '{print $3}' | xargs -i cp -L {} bin
-          ldd bin/test-program-gtest | awk '{print $3}' | xargs -i cp -L {} bin
+          cp /usr/local/lib/libgtest.so bin
           mkdir artifact
           zip artifact/cpp-template-linux.zip bin/*
 
@@ -89,8 +88,7 @@ jobs:
         run: |
           mkdir bin
           cp build/test-program build/test-program-gtest bin
-          otool -L bin/test-program | awk '{print $3}' | xargs -i cp -L {} bin
-          otool -L bin/test-program-gtest | awk '{print $3}' | xargs -i cp -L {} bin
+          cp /usr/local/lib/libgtest.dylib bin
           mkdir artifact
           zip artifact/cpp-template-macos.zip bin/*
 
