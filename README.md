@@ -16,6 +16,7 @@ A template for C++ projects using CMake
 - https://github.com/actions/virtual-environments
 - https://github.com/coverallsapp/github-action
 - https://github.com/github/codeql-action
+- https://github.com/actions/upload-release-asset
 
 ### CMake
 
