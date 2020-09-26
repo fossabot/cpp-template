@@ -40,14 +40,7 @@ jobs:
           mkdir bin
           cp build/test-program build/test-program-gtest bin
           cp /usr/local/lib/libgtest.so bin
-          mkdir artifact
-          zip artifact/cpp-template-linux.zip bin/*
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: binary-archives
-          path: artifact
+          zip cpp-template-linux.zip bin/*
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
@@ -55,7 +48,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifact/cpp-template-linux.zip
+          asset_path: cpp-template-linux.zip
           asset_name: cpp-template-linux.zip
           asset_content_type: application/zip
 
@@ -89,14 +82,7 @@ jobs:
           mkdir bin
           cp build/test-program build/test-program-gtest bin
           cp /usr/local/lib/libgtest.dylib bin
-          mkdir artifact
-          zip artifact/cpp-template-macos.zip bin/*
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: binary-archives
-          path: artifact
+          zip cpp-template-macos.zip bin/*
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
@@ -104,6 +90,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: artifact/cpp-template-macos.zip
+          asset_path: cpp-template-macos.zip
           asset_name: cpp-template-macos.zip
           asset_content_type: application/zip
