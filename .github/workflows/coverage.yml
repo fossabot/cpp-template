@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update
-          sudo apt install g++-10 lcov llvm
+          sudo apt install g++-10 llvm
           wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
           unzip -q release-1.10.0.zip
           cd googletest-release-1.10.0
@@ -28,6 +28,11 @@ jobs:
           -DBUILD_SHARED_LIBS=ON -Dgtest_build_tests=OFF
           cmake --build build --config Release -j$(nproc)
           sudo cmake --build build --config Release --target install
+          cd ..
+          wget -q https://github.com/linux-test-project/lcov/archive/v1.15.zip
+          unzip -q v1.15.zip
+          cd lcov-1.15
+          sudo make install
         env:
           CC: /usr/bin/gcc-10
           CXX: /usr/bin/g++-10
