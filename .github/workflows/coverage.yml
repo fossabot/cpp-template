@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        compiler: [g++-10, clang++-10]
+        c_compiler: [gcc-10, clang-10]
+        cxx_compiler: [g++-10, clang++-10]
 
     steps:
       - uses: actions/checkout@v2
@@ -34,13 +35,14 @@ jobs:
           cd lcov-1.15
           sudo make install
         env:
-          CC: /usr/bin/gcc-10
-          CXX: /usr/bin/g++-10
+          CC: gcc-10
+          CXX: g++-10
 
       - name: Configure
         run: cmake -S . -B build -DCOVERAGE=ON -DCMAKE_BUILD_TYPE=Debug
         env:
-          CXX: ${{ matrix.compiler }}
+          CC: ${{ matrix.c_compiler }}
+          CXX: ${{ matrix.cxx_compiler }}
 
       - name: Build
         run: cmake --build build --config Debug -j$(nproc) --target coverage

@@ -1,7 +1,10 @@
 if(COVERAGE)
+  include(AddCompilerFlag)
+
   if(CMAKE_COMPILER_IS_GNUCXX)
     message(STATUS "Building test suite with coverage information, use lcov")
-    string(APPEND CMAKE_CXX_FLAGS " --coverage")
+
+    add_required_compiler_flag("--coverage")
 
     get_filename_component(COMPILER_PATH "${CMAKE_CXX_COMPILER}" PATH)
     string(REGEX MATCH "^[0-9]+" GCC_VERSION "${CMAKE_CXX_COMPILER_VERSION}")
@@ -43,8 +46,9 @@ if(COVERAGE)
   else()
     message(
       STATUS "Building test suite with coverage information, use llvm-cov")
-    string(APPEND CMAKE_CXX_FLAGS
-           " -fprofile-instr-generate -fcoverage-mapping")
+
+    add_required_compiler_flag("-fprofile-instr-generate")
+    add_required_compiler_flag("-fcoverage-mapping")
 
     find_program(LLVM_PROFDATA_PATH llvm-profdata)
     find_program(LLVM_COV_PATH llvm-cov)
