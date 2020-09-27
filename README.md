@@ -14,6 +14,7 @@ A template for C++ projects using CMake
 
 - https://docs.github.com/cn/actions
 - https://github.com/actions/virtual-environments
+- https://github.com/actions/checkout
 - https://github.com/coverallsapp/github-action
 - https://github.com/github/codeql-action
 - https://github.com/actions/upload-release-asset
@@ -23,6 +24,7 @@ A template for C++ projects using CMake
 - https://cmake.org/cmake/help/latest/
 - https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
 - https://clang.llvm.org/docs/ClangCommandLineReference.html
+- https://github.com/llvm/llvm-project
 
 ### Coverage
 

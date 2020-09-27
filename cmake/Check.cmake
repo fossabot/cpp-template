@@ -49,10 +49,9 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 endif()
 
 if(NOT CMAKE_BUILD_TYPE)
-  message(STATUS "Setting build type to Release as none was specified")
   set(CMAKE_BUILD_TYPE
       "Release"
       CACHE STRING "Choose Release or Debug" FORCE)
-else()
-  message(STATUS "Build type: " ${CMAKE_BUILD_TYPE})
 endif()
+
+message(STATUS "Build type: " ${CMAKE_BUILD_TYPE})
