@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        c_compiler: [gcc-10, clang-10]
-        cxx_compiler: [g++-10, clang++-10]
+        - { name: "GCC", cc: "gcc-10", cxx: "g++-10" }
+        - { name: "Clang", cc: "clang-10", cxx: "clang++-10" }
 
     steps:
       - name: Checkout repository
@@ -47,8 +47,8 @@ jobs:
       - name: Configure
         run: cmake -S . -B build
         env:
-          CC: ${{ matrix.c_compiler }}
-          CXX: ${{ matrix.cxx_compiler }}
+          CC: ${{ matrix.config.cc }}
+          CXX: ${{ matrix.config.cxx }}
 
       - name: Build
         run: cmake --build build --config Release -j$(nproc)
