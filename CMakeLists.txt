@@ -5,10 +5,6 @@ project(
   VERSION 0.1.0
   LANGUAGES C CXX)
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-include(Check)
-include(CompilerOptions)
-
 option(BUILD_TESTING "Build test suite" ON)
 option(FORMAT "Format code" OFF)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
@@ -19,7 +15,10 @@ set(SANITIZER
       "Build with a sanitizer. Options are: Address, Thread, Memory, Undefined and Address;Undefined"
 )
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+include(Check)
 include(ClangTidy)
+include(CompilerOptions)
 include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
@@ -65,19 +64,4 @@ if(BUILD_TESTING)
 endif()
 
 include(Format)
-
-set(CMAKE_SKIP_BUILD_RPATH FALSE)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib;$\{ORIGIN\}")
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES
-     "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
-if("${isSystemDir}" STREQUAL "-1")
-  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib;$\{ORIGIN\}")
-endif("${isSystemDir}" STREQUAL "-1")
-
-install(TARGETS ${PROGRAM_NAME} DESTINATION bin)
-# for test
-install(TARGETS ${LIB_NAME} DESTINATION lib)
-install(TARGETS ${TEST_PROGRAM_NAME} DESTINATION bin)
+include(Install)
