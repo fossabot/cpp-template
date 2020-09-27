@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
+        config:
         - { name: "GCC", cc: "gcc-10", cxx: "g++-10" }
         - { name: "Clang", cc: "clang-10", cxx: "clang++-10" }
 
