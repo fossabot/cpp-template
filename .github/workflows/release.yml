@@ -39,7 +39,7 @@ jobs:
       - name: Create archive
         run: |
           mkdir bin
-          cp build/test-program build/test-program-gtest bin
+          cp build/test-program build/test-program-gtest build/liblibtest-program.so bin
           cp /usr/local/lib/libgtest.so bin
           zip cpp-template-linux.zip bin/*
 
@@ -82,7 +82,7 @@ jobs:
       - name: Create archive
         run: |
           mkdir bin
-          cp build/test-program build/test-program-gtest bin
+          cp build/test-program build/test-program-gtest build/liblibtest-program.dylib bin
           cp /usr/local/lib/libgtest.dylib bin
           zip cpp-template-macos.zip bin/*
 
