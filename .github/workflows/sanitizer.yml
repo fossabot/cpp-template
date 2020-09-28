@@ -35,7 +35,8 @@ jobs:
           CXX: g++-10
 
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER="Address;Undefined"
+        run: cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DSANITIZER="Address;Undefined"
         env:
           CC: ${{ matrix.config.cc }}
           CXX: ${{ matrix.config.cxx }}
@@ -82,7 +83,8 @@ jobs:
           CXX: clang++-10
 
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Thread -DCMAKE_CXX_FLAGS="-stdlib=libc++"
+        run: cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+             -DSANITIZER=Thread -DCMAKE_CXX_FLAGS="-stdlib=libc++"
         env:
           CC: clang-10
           CXX: clang++-10
@@ -126,7 +128,8 @@ jobs:
           CXX: clang++-10
 
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Memory -DCMAKE_CXX_FLAGS="-stdlib=libc++"
+        run: cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+             -DSANITIZER=Memory -DCMAKE_CXX_FLAGS="-stdlib=libc++"
         env:
           CC: clang-10
           CXX: clang++-10
@@ -155,7 +158,8 @@ jobs:
           sudo cmake --build build --config RelWithDebInfo --target install
 
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER="Address;Undefined"
+        run: cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+             -DSANITIZER="Address;Undefined"
 
       - name: Build
         run: cmake --build build --config RelWithDebInfo -j`sysctl -n hw.ncpu`
@@ -202,7 +206,8 @@ jobs:
           CPLUS_INCLUDE_PATH: /usr/local/include
 
       - name: Configure
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo -DSANITIZER=Thread -DCMAKE_CXX_FLAGS="-stdlib=libc++"
+        run: cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+             -DSANITIZER=Thread -DCMAKE_CXX_FLAGS="-stdlib=libc++"
 
       - name: Build
         run: cmake --build build --config RelWithDebInfo -j`sysctl -n hw.ncpu`

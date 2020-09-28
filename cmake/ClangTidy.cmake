@@ -5,6 +5,6 @@ if(CLANG_TIDY)
     message(FATAL_ERROR "Can not find clang-tidy")
   endif()
 
-  message(STATUS "Found clang-tidy")
-  set(CMAKE_CXX_CLANG_TIDY clang-tidy)
+  message(STATUS "Use clang-tidy to analyze the code")
+  set(CMAKE_CXX_CLANG_TIDY clang-tidy --export-fixes=clang-tidy.txt)
 endif()

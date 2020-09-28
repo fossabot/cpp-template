@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         config:
-        - { name: "GCC", cc: "gcc-10", cxx: "g++-10" }
-        - { name: "Clang", cc: "clang-10", cxx: "clang++-10" }
+          - { name: "GCC", cc: "gcc-10", cxx: "g++-10" }
+          - { name: "Clang", cc: "clang-10", cxx: "clang++-10" }
 
     steps:
       - uses: actions/checkout@v2
@@ -39,13 +39,19 @@ jobs:
           CXX: g++-10
 
       - name: Configure
-        run: cmake -S . -B build -DCLANG_TIDY=ON
+        run: cmake -S . -B build -DBUILD_TESTING=ON -DCLANG_TIDY=ON
         env:
           CC: ${{ matrix.config.cc }}
           CXX: ${{ matrix.config.cxx }}
 
       - name: Build
         run: cmake --build build --config Release -j$(nproc)
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: clang-tidy-linux
+          path: build/clang-tidy.txt
 
   macos:
     runs-on: macos-latest
@@ -65,10 +71,16 @@ jobs:
           sudo cmake --build build --config Release --target install
 
       - name: Configure
-        run: cmake -S . -B build -DCLANG_TIDY=ON
+        run: cmake -S . -B build -DBUILD_TESTING=ON -DCLANG_TIDY=ON
 
       - name: Build
         run: cmake --build build --config Release -j`sysctl -n hw.ncpu`
         env:
           C_INCLUDE_PATH: /usr/local/include
           CPLUS_INCLUDE_PATH: /usr/local/include
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: clang-tidy-macos
+          path: build/clang-tidy.txt

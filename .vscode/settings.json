@@ -1,5 +1,6 @@
 {
   "cmake.configureArgs": [
+    "-DBUILD_TESTING=ON",
     "-DCOVERAGE=ON",
     "-DSANITIZER=Address;Undefined",
     "-DFORMAT=ON"

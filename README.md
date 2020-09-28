@@ -18,13 +18,13 @@ A template for C++ projects using CMake
 - https://github.com/coverallsapp/github-action
 - https://github.com/github/codeql-action
 - https://github.com/actions/upload-release-asset
+- https://github.com/actions/upload-artifact
 
 ### CMake
 
 - https://cmake.org/cmake/help/latest/
 - https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
 - https://clang.llvm.org/docs/ClangCommandLineReference.html
-- https://github.com/llvm/llvm-project
 - https://gitlab.kitware.com/cmake/community/-/wikis/doc/cmake/RPATH-handling
 
 ### Coverage

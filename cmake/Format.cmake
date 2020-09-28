@@ -1,31 +1,37 @@
 if(FORMAT)
   find_program(CLANG_FORMAT_PATH clang-format)
-
   if(NOT CLANG_FORMAT_PATH)
     message(FATAL_ERROR "Can not find clang-format")
   endif()
 
-  message(STATUS "Found clang-format")
-  add_custom_target(clang_format COMMAND ${CLANG_FORMAT_PATH} -i -verbose
-                                         ${CLANG_FORMAT_SOURCES})
-  add_dependencies(${LIB_NAME} clang_format)
-  add_dependencies(${PROGRAM_NAME} clang_format)
-  if(BUILD_TESTING)
-    add_dependencies(${TEST_PROGRAM_NAME} clang_format)
-  endif()
-
   find_program(CMAKE_FORMAT_PATH cmake-format)
-
   if(NOT CMAKE_FORMAT_PATH)
     message(FATAL_ERROR "Can not find cmake-format")
   endif()
 
-  message(STATUS "Found cmake-format")
-  add_custom_target(cmake_format COMMAND ${CMAKE_FORMAT_PATH} -i
-                                         ${CMAKE_FORMAT_SOURCES})
-  add_dependencies(${LIB_NAME} cmake_format)
-  add_dependencies(${PROGRAM_NAME} cmake_format)
+  message(STATUS "Format code using clang-foramt and cmake-foramt")
+
+  file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS
+       ${CMAKE_SOURCE_DIR}/include/*.h ${CMAKE_SOURCE_DIR}/src/*.cpp
+       ${CMAKE_SOURCE_DIR}/tests/*.cpp)
+  file(
+    GLOB_RECURSE
+    CMAKE_FORMAT_SOURCES
+    CONFIGURE_DEPENDS
+    ${CMAKE_SOURCE_DIR}/cmake/*.cmake
+    ${CMAKE_SOURCE_DIR}/CMakeLists.txt
+    ${CMAKE_SOURCE_DIR}/src/CMakeLists.txt
+    ${CMAKE_SOURCE_DIR}/tests/CMakeLists.txt)
+
+  add_custom_target(
+    format
+    COMMAND ${CLANG_FORMAT_PATH} -i ${CLANG_FORMAT_SOURCES}
+    COMMAND ${CMAKE_FORMAT_PATH} -i ${CMAKE_FORMAT_SOURCES}
+    COMMENT "Format C++ and CMake files")
+
+  add_dependencies(${LIB_NAME} format)
+  add_dependencies(${PROGRAM_NAME} format)
   if(BUILD_TESTING)
-    add_dependencies(${TEST_PROGRAM_NAME} cmake_format)
+    add_dependencies(${TEST_PROGRAM_NAME} format)
   endif()
 endif()

@@ -10,6 +10,3 @@ if("${isSystemDir}" STREQUAL "-1")
 endif()
 
 install(TARGETS ${PROGRAM_NAME} DESTINATION bin)
-# for test
-install(TARGETS ${LIB_NAME} DESTINATION lib)
-install(TARGETS ${TEST_PROGRAM_NAME} DESTINATION bin)
