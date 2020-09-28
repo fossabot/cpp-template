@@ -24,39 +24,9 @@ if(FORMAT)
     COMMAND ${CMAKE_FORMAT_PATH} -i ${CMAKE_FORMAT_SOURCES}
     COMMENT "Format C++ and CMake files")
 
-  set(project_directories "")
-  get_property(
-    stack
-    DIRECTORY ${CMAKE_SOURCE_DIR}
-    PROPERTY SUBDIRECTORIES)
-  while(stack)
-    list(POP_BACK stack directory)
-    list(APPEND project_directories ${directory})
-    get_property(
-      subdirs
-      DIRECTORY ${directory}
-      PROPERTY SUBDIRECTORIES)
-    if(subdirs)
-      list(APPEND stack ${subdirs})
-    endif()
-  endwhile()
-
-  function(get_targets found_targets)
-    foreach(dir ${project_directories})
-      get_property(
-        target
-        DIRECTORY ${dir}
-        PROPERTY BUILDSYSTEM_TARGETS)
-      list(APPEND targets ${target})
-    endforeach()
-    set(${found_targets}
-        ${targets}
-        PARENT_SCOPE)
-  endfunction()
-
-  get_targets(targets)
-
-  foreach(target ${targets})
-    add_dependencies(${target} format)
-  endforeach()
+  add_dependencies(${LIB_NAME} format)
+  add_dependencies(${PROGRAM_NAME} format)
+  if(BUILD_TESTING)
+    add_dependencies(${TEST_PROGRAM_NAME} format)
+  endif()
 endif()
