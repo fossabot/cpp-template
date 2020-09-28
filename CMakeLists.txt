@@ -31,11 +31,36 @@ set(PROGRAM_NAME test-program)
 set(LIB_NAME lib${PROGRAM_NAME})
 set(TEST_PROGRAM_NAME ${PROGRAM_NAME}-gtest)
 
-add_subdirectory(src)
+file(GLOB_RECURSE LIB_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp)
+set(SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp)
+list(REMOVE_ITEM LIB_SOURCES ${SOURCES})
+
+add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
+add_library(${LIB_NAME} OBJECT ${LIB_SOURCES})
+target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+
+add_executable(${PROGRAM_NAME} ${SOURCES})
+target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
 
 if(BUILD_TESTING)
   enable_testing()
-  add_subdirectory(tests)
+
+  message(STATUS "Build test suite")
+
+  option(COVERAGE "Build test suite with coverage information" OFF)
+  option(VALGRIND "Execute test suite with Valgrind" OFF)
+
+  include(Coverage)
+  include(Valgrind)
+
+  file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS
+       ${CMAKE_SOURCE_DIR}/tests/*.cpp)
+
+  find_package(GTest REQUIRED)
+
+  add_executable(${TEST_PROGRAM_NAME} ${TEST_SOURCES})
+  target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME} GTest::gtest)
+  gtest_discover_tests(${TEST_PROGRAM_NAME})
 endif()
 
 include(Format)

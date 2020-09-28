@@ -47,7 +47,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: build/tests/lcov.info
+          path-to-lcov: build/lcov.info
 
   macos:
     runs-on: macos-latest
