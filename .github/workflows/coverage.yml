@@ -75,3 +75,9 @@ jobs:
         env:
           C_INCLUDE_PATH: /usr/local/include
           CPLUS_INCLUDE_PATH: /usr/local/include
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-macos
+          path: build/lcov.info
