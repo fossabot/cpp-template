@@ -15,14 +15,8 @@ if(FORMAT)
   file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS
        ${CMAKE_SOURCE_DIR}/include/*.h ${CMAKE_SOURCE_DIR}/src/*.cpp
        ${CMAKE_SOURCE_DIR}/tests/*.cpp)
-  file(
-    GLOB_RECURSE
-    CMAKE_FORMAT_SOURCES
-    CONFIGURE_DEPENDS
-    ${CMAKE_SOURCE_DIR}/cmake/*.cmake
-    ${CMAKE_SOURCE_DIR}/CMakeLists.txt
-    ${CMAKE_SOURCE_DIR}/src/CMakeLists.txt
-    ${CMAKE_SOURCE_DIR}/tests/CMakeLists.txt)
+  file(GLOB_RECURSE CMAKE_FORMAT_SOURCES CONFIGURE_DEPENDS
+       ${CMAKE_SOURCE_DIR}/cmake/*.cmake ${CMAKE_SOURCE_DIR}/CMakeLists.txt)
 
   add_custom_target(
     format
