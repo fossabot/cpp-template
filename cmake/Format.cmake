@@ -1,15 +1,16 @@
 if(FORMAT)
+  message(STATUS "Format code using clang-foramt and cmake-foramt")
+
   find_program(CLANG_FORMAT_PATH clang-format)
+  find_program(CMAKE_FORMAT_PATH cmake-format)
+
   if(NOT CLANG_FORMAT_PATH)
     message(FATAL_ERROR "Can not find clang-format")
   endif()
 
-  find_program(CMAKE_FORMAT_PATH cmake-format)
   if(NOT CMAKE_FORMAT_PATH)
     message(FATAL_ERROR "Can not find cmake-format")
   endif()
-
-  message(STATUS "Format code using clang-foramt and cmake-foramt")
 
   file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS
        ${CMAKE_SOURCE_DIR}/include/*.h ${CMAKE_SOURCE_DIR}/src/*.cpp

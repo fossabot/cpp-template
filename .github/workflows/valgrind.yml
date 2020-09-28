@@ -12,8 +12,8 @@ jobs:
     strategy:
       matrix:
         config:
-        - { name: "GCC", cc: "gcc-10", cxx: "g++-10" }
-        - { name: "Clang", cc: "clang-10", cxx: "clang++-10" }
+          - { name: "GCC", cc: "gcc-10", cxx: "g++-10" }
+          - { name: "Clang", cc: "clang-10", cxx: "clang++-10" }
 
     steps:
       - uses: actions/checkout@v2
@@ -35,8 +35,9 @@ jobs:
           CXX: g++-10
 
       - name: Configure
-        run: cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-             -DVALGRIND=ON
+        run: |
+          cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+          -DVALGRIND=ON
         env:
           CC: ${{ matrix.config.cc }}
           CXX: ${{ matrix.config.cxx }}
@@ -66,8 +67,9 @@ jobs:
           sudo cmake --build build --config RelWithDebInfo --target install
 
       - name: Configure
-        run: cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-             -DVALGRIND=ON
+        run: |
+          cmake -S . -B build -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+          -DVALGRIND=ON
 
       - name: Build
         run: cmake --build build --config RelWithDebInfo -j`sysctl -n hw.ncpu`

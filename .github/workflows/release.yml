@@ -29,7 +29,7 @@ jobs:
       - name: Create archive
         run: |
           mkdir bin
-          cp build/test-program bin
+          cp build/src/test-program bin
           zip cpp-template-linux.zip bin/*
 
       - name: Upload release asset
@@ -61,7 +61,7 @@ jobs:
       - name: Create archive
         run: |
           mkdir bin
-          cp build/test-program bin
+          cp build/src/test-program bin
           zip cpp-template-macos.zip bin/*
 
       - name: Upload release asset
