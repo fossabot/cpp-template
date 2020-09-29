@@ -40,7 +40,8 @@ jobs:
         run: cmake --build build --config Release -j$(nproc)
 
       - name: Run
-        run: cd build ; ./test-program-benchmark --benchmark_format=json | tee benchmark-result.json
+        run: |
+          cd build ; ./test-program-benchmark
 
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
@@ -85,7 +86,7 @@ jobs:
           CPLUS_INCLUDE_PATH: /usr/local/include
 
       - name: Run
-        run: cd build ; ./test-program-benchmark --benchmark_format=json | tee benchmark-result.json
+        run: cd build ; ./test-program-benchmark
 
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
