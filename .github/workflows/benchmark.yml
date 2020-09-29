@@ -64,6 +64,7 @@ jobs:
       - name: Install
         run: |
           ln -s "$(brew --prefix llvm)/bin/llvm-ar" "/usr/local/bin/llvm-ar"
+          ln -s "$(brew --prefix llvm)/bin/llvm-nm" "/usr/local/bin/llvm-nm"
           wget -q https://github.com/google/benchmark/archive/v1.5.2.zip
           unzip -q v1.5.2.zip
           cd benchmark-1.5.2
