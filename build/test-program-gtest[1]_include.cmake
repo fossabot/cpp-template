@@ -1,5 +1,0 @@
-if(EXISTS "/home/kaiser/cpp-template/build/test-program-gtest[1]_tests.cmake")
-  include("/home/kaiser/cpp-template/build/test-program-gtest[1]_tests.cmake")
-else()
-  add_test(test-program-gtest_NOT_BUILT test-program-gtest_NOT_BUILT)
-endif()
