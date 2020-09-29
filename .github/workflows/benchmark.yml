@@ -42,19 +42,12 @@ jobs:
       - name: Run
         run: cd build ; ./test-program-benchmark --benchmark_format=json | tee benchmark-result.json
 
-      - name: Download previous benchmark data
-        uses: actions/cache@v2
-        with:
-          path: ./cache
-          key: ${{ runner.os }}-benchmark
-
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
           name: C++ Benchmark Linux
           tool: "googlecpp"
           output-file-path: build/benchmark-result.json
-          external-data-json-path: ./cache/benchmark-data.json
           fail-on-alert: true
           alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -92,19 +85,12 @@ jobs:
       - name: Run
         run: cd build ; ./test-program-benchmark --benchmark_format=json | tee benchmark-result.json
 
-      - name: Download previous benchmark data
-        uses: actions/cache@v2
-        with:
-          path: ./cache
-          key: ${{ runner.os }}-benchmark
-
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
           name: C++ Benchmark macOS
           tool: "googlecpp"
           output-file-path: build/benchmark-result.json
-          external-data-json-path: ./cache/benchmark-data.json
           fail-on-alert: true
           alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -19,7 +19,6 @@ A template for C++ projects using CMake
 - https://github.com/github/codeql-action
 - https://github.com/actions/upload-release-asset
 - https://github.com/actions/upload-artifact
-- https://github.com/actions/cache
 - https://github.com/rhysd/github-action-benchmark
 
 ### CMake
