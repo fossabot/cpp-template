@@ -72,6 +72,7 @@ if(BENCHMARK)
        ${CMAKE_SOURCE_DIR}/benchmark/*.cpp)
 
   find_package(benchmark REQUIRED)
+
   add_executable(${BENCHMARK_PROGRAM_NAME} ${BENCHMARK_SOURCES})
   target_link_libraries(${BENCHMARK_PROGRAM_NAME} PRIVATE ${LIB_NAME}
                                                           benchmark::benchmark)

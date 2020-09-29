@@ -39,22 +39,30 @@ jobs:
       - name: Build
         run: cmake --build build --config Release -j$(nproc)
 
-      - name: Run
-        run: |
-          cd build ; ./test-program-benchmark
+      - name: Run Benchmark(json)
+        run: ./build/test-program-benchmark --benchmark_out=benchmark-result.json --benchmark_out_format=json
+
+      - name: Run Benchmark(txt)
+        run: ./build/test-program-benchmark --benchmark_out=benchmark-result.txt --benchmark_out_format=console
 
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
-          name: C++ Benchmark Linux
+          name: C++ Benchmark(Linux)
           tool: "googlecpp"
           output-file-path: build/benchmark-result.json
-          fail-on-alert: true
+          fail-on-alert: false
           alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
           alert-comment-cc-users: "@KaiserLancelot"
           auto-push: true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: benchmark-linux
+          path: build/benchmark-result.txt
 
   macos:
     runs-on: macos-latest
@@ -85,18 +93,27 @@ jobs:
           C_INCLUDE_PATH: /usr/local/include
           CPLUS_INCLUDE_PATH: /usr/local/include
 
-      - name: Run
-        run: cd build ; ./test-program-benchmark
+      - name: Run Benchmark(json)
+        run: ./build/test-program-benchmark --benchmark_out=benchmark-result.json --benchmark_out_format=json
+
+      - name: Run Benchmark(txt)
+        run: ./build/test-program-benchmark --benchmark_out=benchmark-result.txt --benchmark_out_format=console
 
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
-          name: C++ Benchmark macOS
+          name: C++ Benchmark(macOS)
           tool: "googlecpp"
           output-file-path: build/benchmark-result.json
-          fail-on-alert: true
+          fail-on-alert: false
           alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
           alert-comment-cc-users: "@KaiserLancelot"
           auto-push: true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: benchmark-macos
+          path: build/benchmark-result.txt

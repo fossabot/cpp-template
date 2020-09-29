@@ -15,10 +15,10 @@ A template for C++ projects using CMake
 - https://docs.github.com/cn/actions
 - https://github.com/actions/virtual-environments
 - https://github.com/actions/checkout
-- https://github.com/coverallsapp/github-action
-- https://github.com/github/codeql-action
 - https://github.com/actions/upload-release-asset
 - https://github.com/actions/upload-artifact
+- https://github.com/github/codeql-action
+- https://github.com/coverallsapp/github-action
 - https://github.com/rhysd/github-action-benchmark
 
 ### CMake
