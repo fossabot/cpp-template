@@ -9,11 +9,6 @@ on:
 jobs:
   ubuntu:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        config:
-          - { name: "GCC", cc: "gcc-10", cxx: "g++-10" }
-          - { name: "Clang", cc: "clang-10", cxx: "clang++-10" }
 
     steps:
       - uses: actions/checkout@v2
@@ -38,8 +33,8 @@ jobs:
       - name: Configure
         run: cmake -S . -B build -DBENCHMARK=ON
         env:
-          CC: ${{ matrix.config.cc }}
-          CXX: ${{ matrix.config.cxx }}
+          CC: gcc-10
+          CXX: g++-10
 
       - name: Build
         run: cmake --build build --config Release -j$(nproc)
@@ -56,13 +51,16 @@ jobs:
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
+          name: C++ Benchmark Linux
           tool: "googlecpp"
           output-file-path: build/benchmark-result.json
           external-data-json-path: ./cache/benchmark-data.json
           fail-on-alert: true
+          alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
           alert-comment-cc-users: "@KaiserLancelot"
+          auto-push: true
 
   macos:
     runs-on: macos-latest
@@ -72,6 +70,7 @@ jobs:
 
       - name: Install
         run: |
+          ln -s "$(brew --prefix llvm)/bin/llvm-ar" "/usr/local/bin/llvm-ar"
           wget -q https://github.com/google/benchmark/archive/v1.5.2.zip
           unzip -q v1.5.2.zip
           cd benchmark-1.5.2
@@ -102,10 +101,13 @@ jobs:
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1
         with:
+          name: C++ Benchmark macOS
           tool: "googlecpp"
           output-file-path: build/benchmark-result.json
           external-data-json-path: ./cache/benchmark-data.json
           fail-on-alert: true
+          alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-on-alert: true
           alert-comment-cc-users: "@KaiserLancelot"
+          auto-push: true
