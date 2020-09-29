@@ -12,9 +12,14 @@ if(FORMAT)
     message(FATAL_ERROR "Can not find cmake-format")
   endif()
 
-  file(GLOB_RECURSE CLANG_FORMAT_SOURCES CONFIGURE_DEPENDS
-       ${CMAKE_SOURCE_DIR}/include/*.h ${CMAKE_SOURCE_DIR}/src/*.cpp
-       ${CMAKE_SOURCE_DIR}/tests/*.cpp)
+  file(
+    GLOB_RECURSE
+    CLANG_FORMAT_SOURCES
+    CONFIGURE_DEPENDS
+    ${CMAKE_SOURCE_DIR}/benchmark/*.cpp
+    ${CMAKE_SOURCE_DIR}/include/*.h
+    ${CMAKE_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_SOURCE_DIR}/tests/*.cpp)
   file(GLOB_RECURSE CMAKE_FORMAT_SOURCES CONFIGURE_DEPENDS
        ${CMAKE_SOURCE_DIR}/cmake/*.cmake ${CMAKE_SOURCE_DIR}/CMakeLists.txt)
 

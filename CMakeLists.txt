@@ -10,6 +10,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
 endif()
 
 option(BUILD_TESTING "Build test suite" OFF)
+option(BENCHMARK "Enable benchmarking" OFF)
 option(FORMAT "Format code" OFF)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
 
@@ -30,6 +31,7 @@ include(Sanitizer)
 set(PROGRAM_NAME test-program)
 set(LIB_NAME lib${PROGRAM_NAME})
 set(TEST_PROGRAM_NAME ${PROGRAM_NAME}-gtest)
+set(BENCHMARK_PROGRAM_NAME ${PROGRAM_NAME}-benchmark)
 
 file(GLOB_RECURSE LIB_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp)
 set(SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp)
@@ -61,6 +63,18 @@ if(BUILD_TESTING)
   add_executable(${TEST_PROGRAM_NAME} ${TEST_SOURCES})
   target_link_libraries(${TEST_PROGRAM_NAME} PRIVATE ${LIB_NAME} GTest::gtest)
   gtest_discover_tests(${TEST_PROGRAM_NAME})
+endif()
+
+if(BENCHMARK)
+  message(STATUS "Enable benchmarking")
+
+  file(GLOB_RECURSE BENCHMARK_SOURCES CONFIGURE_DEPENDS
+       ${CMAKE_SOURCE_DIR}/benchmark/*.cpp)
+
+  find_package(benchmark REQUIRED)
+  add_executable(${BENCHMARK_PROGRAM_NAME} ${BENCHMARK_SOURCES})
+  target_link_libraries(${BENCHMARK_PROGRAM_NAME} PRIVATE ${LIB_NAME}
+                                                          benchmark::benchmark)
 endif()
 
 include(Format)
