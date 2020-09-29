@@ -50,7 +50,7 @@ jobs:
         with:
           name: C++ Benchmark(Linux)
           tool: "googlecpp"
-          output-file-path: build/benchmark-result.json
+          output-file-path: benchmark-result.json
           fail-on-alert: false
           alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -104,7 +104,7 @@ jobs:
         with:
           name: C++ Benchmark(macOS)
           tool: "googlecpp"
-          output-file-path: build/benchmark-result.json
+          output-file-path: benchmark-result.json
           fail-on-alert: false
           alert-threshold: "120%"
           github-token: ${{ secrets.GITHUB_TOKEN }}

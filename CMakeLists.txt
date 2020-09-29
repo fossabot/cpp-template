@@ -29,17 +29,21 @@ include(CompilerOptions)
 include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
-set(LIB_NAME lib${PROGRAM_NAME})
-set(TEST_PROGRAM_NAME ${PROGRAM_NAME}-gtest)
-set(BENCHMARK_PROGRAM_NAME ${PROGRAM_NAME}-benchmark)
+set(LIB_NAME add)
+set(TEST_PROGRAM_NAME test-gtest)
+set(BENCHMARK_PROGRAM_NAME test-benchmark)
 
 file(GLOB_RECURSE LIB_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp)
 set(SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp)
 list(REMOVE_ITEM LIB_SOURCES ${SOURCES})
 
 add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
-add_library(${LIB_NAME} OBJECT ${LIB_SOURCES})
-target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+add_library(${LIB_NAME} STATIC ${LIB_SOURCES})
+target_include_directories(
+  ${LIB_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
+                     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
+set_target_properties(${LIB_NAME} PROPERTIES VERSION 0.1.0 SOVERSION 0)
+set_target_properties(${LIB_NAME} PROPERTIES DEBUG_POSTFIX d)
 
 add_executable(${PROGRAM_NAME} ${SOURCES})
 target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})

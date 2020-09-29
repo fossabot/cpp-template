@@ -33,4 +33,5 @@ void test3(benchmark::State& state) {
 
 BENCHMARK(test3);
 
+// sudo cpupower frequency-set --governor performance
 BENCHMARK_MAIN();
