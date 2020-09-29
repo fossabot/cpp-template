@@ -1,9 +1,0 @@
-{
-  "cmake.configureArgs": [
-    "-DBUILD_TESTING=ON",
-    "-DBENCHMARK=ON",
-    "-DCOVERAGE=ON",
-    "-DSANITIZER=Address;Undefined",
-    "-DFORMAT=ON"
-  ]
-}

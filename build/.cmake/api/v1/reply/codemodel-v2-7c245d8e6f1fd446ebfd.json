@@ -1,0 +1,105 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "cpp-template",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "coverage::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-coverage-Debug-23e3f74e3a8e4fb396f4.json",
+					"name" : "coverage",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "format::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-format-Debug-f268e07b190fc6e9d042.json",
+					"name" : "format",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "libtest-program::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-libtest-program-Debug-7bb2869a12ebc37353cd.json",
+					"name" : "libtest-program",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-program::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-program-Debug-1d5c228cc47f2c154956.json",
+					"name" : "test-program",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-program-benchmark::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-program-benchmark-Debug-12b82b5560ad407476a7.json",
+					"name" : "test-program-benchmark",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-program-gtest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-program-gtest-Debug-ed963aedaa860581bd30.json",
+					"name" : "test-program-gtest",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/kaiser/cpp-template/build",
+		"source" : "/home/kaiser/cpp-template"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

@@ -1,0 +1,13 @@
+/home/kaiser/cpp-template/build/CMakeFiles/install/strip.dir
+/home/kaiser/cpp-template/build/CMakeFiles/edit_cache.dir
+/home/kaiser/cpp-template/build/CMakeFiles/test.dir
+/home/kaiser/cpp-template/build/CMakeFiles/install.dir
+/home/kaiser/cpp-template/build/CMakeFiles/list_install_components.dir
+/home/kaiser/cpp-template/build/CMakeFiles/rebuild_cache.dir
+/home/kaiser/cpp-template/build/CMakeFiles/test-program-benchmark.dir
+/home/kaiser/cpp-template/build/CMakeFiles/coverage.dir
+/home/kaiser/cpp-template/build/CMakeFiles/format.dir
+/home/kaiser/cpp-template/build/CMakeFiles/test-program.dir
+/home/kaiser/cpp-template/build/CMakeFiles/install/local.dir
+/home/kaiser/cpp-template/build/CMakeFiles/test-program-gtest.dir
+/home/kaiser/cpp-template/build/CMakeFiles/libtest-program.dir
