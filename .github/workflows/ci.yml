@@ -47,16 +47,6 @@ jobs:
       - name: Test
         run: cd build ; ctest -C Release -j$(nproc) --output-on-failure
 
-      - name: Install
-        run: sudo cmake --build build --config Release --target install
-
-      - name: Install test
-        run: |
-          cd test_project
-          cmake -S . -B build
-          cmake --build build --config Release -j$(nproc)
-          ./build/test-project
-
   macos:
     runs-on: macos-latest
 
@@ -84,13 +74,3 @@ jobs:
 
       - name: Test
         run: cd build ; ctest -C Release -j`sysctl -n hw.ncpu` --output-on-failure
-
-      - name: Install
-        run: sudo cmake --build build --config Release --target install
-
-      - name: Install test
-        run: |
-          cd test_project
-          cmake -S . -B build
-          cmake --build build --config Release -j`sysctl -n hw.ncpu`
-          ./build/test-project
