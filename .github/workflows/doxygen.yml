@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update
-          sudo apt install gcc-10 g++-10
+          sudo apt install gcc-10 g++-10 flex bison
           wget -q https://github.com/doxygen/doxygen/archive/Release_1_8_20.zip
           unzip -q Release_1_8_20.zip
           cd doxygen-Release_1_8_20
