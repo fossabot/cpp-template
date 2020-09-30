@@ -1,15 +1,16 @@
 cmake_minimum_required(VERSION 3.12)
 
-include(cmake/Version.cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-klib_extract_version()
+include(Version)
+cpp_template_extract_version()
 
 project(
   cpp-template
-  VERSION ${KLIB_VERSION}
+  VERSION ${CPP_TEMPLATE_VERSION}
   LANGUAGES C CXX)
 
-message(STATUS "Build klib: ${KLIB_VERSION}")
+message(STATUS "Build ${PROJECT_NAME}: ${CPP_TEMPLATE_VERSION}")
 
 option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
@@ -33,8 +34,6 @@ set(SANITIZER
       STRING
       "Build with a sanitizer. Options are: Address, Thread, Memory, Undefined and Address;Undefined"
 )
-
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include(Check)
 include(ClangTidy)

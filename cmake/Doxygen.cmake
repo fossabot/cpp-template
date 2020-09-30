@@ -1,5 +1,5 @@
 if(BUILD_DOC)
-  message(STATUS "Build documentation")
+  message(STATUS "Generating documentation")
 
   find_package(Doxygen REQUIRED)
 
@@ -9,7 +9,10 @@ if(BUILD_DOC)
   add_custom_target(
     doc
     COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT
+      "Generating documentation ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/index.html"
+  )
 
   add_dependencies(${LIB_NAME} doc)
   add_dependencies(${PROGRAM_NAME} doc)

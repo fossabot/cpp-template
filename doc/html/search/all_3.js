@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sub_4',['sub',['../sub_8h.html#a8a69cbf7bd5d0adfd48b895fa539dec2',1,'sub.h']]],
-  ['sub_2eh_5',['sub.h',['../sub_8h.html',1,'']]]
+  ['get_5fval_7',['get_val',['../classBar.html#a981b7b982b6b2c4a9d0533fca1cf4884',1,'Bar']]]
 ];

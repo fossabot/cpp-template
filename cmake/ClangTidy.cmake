@@ -1,5 +1,5 @@
 if(CLANG_TIDY)
-  message(STATUS "Use clang-tidy to analyze the code")
+  message(STATUS "Using clang-tidy to analyze the code")
 
   find_program(CLANG_TIDY_EXECUTABLE clang-tidy)
 

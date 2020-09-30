@@ -1,5 +1,5 @@
 if(FORMAT)
-  message(STATUS "Format code using clang-foramt and cmake-foramt")
+  message(STATUS "Formating code using clang-foramt and cmake-foramt")
 
   find_program(CLANG_FORMAT_EXECUTABLE clang-format)
   find_program(CMAKE_FORMAT_EXECUTABLE cmake-format)

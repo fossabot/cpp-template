@@ -2,9 +2,14 @@
 
 #pragma once
 
-#define KLIB_VER_MAJOR 0
-#define KLIB_VER_MINOR 6
-#define KLIB_VER_PATCH 0
+/// major verion
+#define CPP_TEMPLATE_VER_MAJOR 0
+/// minor version
+#define CPP_TEMPLATE_VER_MINOR 6
+/// patch version
+#define CPP_TEMPLATE_VER_PATCH 0
 
-#define KLIB_VERSION \
-  (KLIB_VER_MAJOR * 10000 + KLIB_VER_MINOR * 100 + KLIB_VER_PATCH)
+/// version
+#define CPP_TEMPLATE_VERSION                                       \
+  (CPP_TEMPLATE_VER_MAJOR * 10000 + CPP_TEMPLATE_VER_MINOR * 100 + \
+   CPP_TEMPLATE_VER_PATCH)
