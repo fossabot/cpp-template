@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1601503967191,
+  "lastUpdate": 1601504191635,
   "repoUrl": "https://github.com/KaiserLancelot/cpp-template",
   "entries": {
     "C++ Benchmark(macOS)": [
@@ -1094,6 +1094,48 @@ window.BENCHMARK_DATA = {
             "value": 9.97576014829643,
             "unit": "ns/iter",
             "extra": "iterations: 75654547\ncpu: 9.973656560259357 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "1244713586@qq.com",
+            "name": "kaiser",
+            "username": "KaiserLancelot"
+          },
+          "committer": {
+            "email": "1244713586@qq.com",
+            "name": "kaiser",
+            "username": "KaiserLancelot"
+          },
+          "distinct": true,
+          "id": "84dccf78cff34ae38dfc3a70be4df2efb8c04a4e",
+          "message": "2020.10.1",
+          "timestamp": "2020-10-01T06:10:46+08:00",
+          "tree_id": "74c5924bd0f2f9c919f932a5073c100348fd2ee7",
+          "url": "https://github.com/KaiserLancelot/cpp-template/commit/84dccf78cff34ae38dfc3a70be4df2efb8c04a4e"
+        },
+        "date": 1601504191118,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "test",
+            "value": 1.5103859232119452,
+            "unit": "ns/iter",
+            "extra": "iterations: 459370814\ncpu: 1.510003804899978 ns\nthreads: 1"
+          },
+          {
+            "name": "test2",
+            "value": 5.269222394620699,
+            "unit": "ns/iter",
+            "extra": "iterations: 131280509\ncpu: 5.259457479708585 ns\nthreads: 1"
+          },
+          {
+            "name": "test3",
+            "value": 9.18897597164362,
+            "unit": "ns/iter",
+            "extra": "iterations: 77536847\ncpu: 9.183266389462547 ns\nthreads: 1"
           }
         ]
       }
