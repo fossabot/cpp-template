@@ -56,6 +56,7 @@ jobs:
           path-to-lcov: build/lcov.info
 
       - name: Upload artifact
+        if: ${{ matrix.config.cxx == 'g++-10' }}
         uses: actions/upload-artifact@v2
         with:
           name: coverage-linux-gcc
