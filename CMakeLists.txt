@@ -5,6 +5,7 @@ project(
   VERSION 0.1.0
   LANGUAGES C CXX)
 
+option(LTO "Enable link time optimization(When CMAKE_BUILD_TYPE is Release)" ON)
 option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
 option(BENCHMARK "Enable benchmarking" OFF)
@@ -13,6 +14,11 @@ option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
   option(USE_LIBCXX "Use libc++" OFF)
+endif()
+
+if(BUILD_TESTING)
+  option(COVERAGE "Build test suite with coverage information" OFF)
+  option(VALGRIND "Execute test suite with Valgrind" OFF)
 endif()
 
 set(SANITIZER
@@ -41,8 +47,16 @@ list(REMOVE_ITEM LIB_SOURCES ${SOURCES})
 add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
 
 if(BUILD_SHARED)
+  message(STATUS "Build shared library")
   add_library(${LIB_NAME} SHARED ${LIB_SOURCES})
 else()
+  message(STATUS "Build static library")
+  if((CMAKE_BUILD_TYPE STREQUAL "Release") AND LTO)
+    message(WARNING "IPO / LTO has been turned on, only "
+                    ${CMAKE_CXX_COMPILER_ID} " " ${CMAKE_CXX_COMPILER_VERSION}
+                    " can be used")
+  endif()
+
   add_library(${LIB_NAME} STATIC ${LIB_SOURCES})
 endif()
 
@@ -58,12 +72,9 @@ add_executable(${PROGRAM_NAME} ${SOURCES})
 target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
 
 if(BUILD_TESTING)
-  enable_testing()
-
   message(STATUS "Build test suite")
 
-  option(COVERAGE "Build test suite with coverage information" OFF)
-  option(VALGRIND "Execute test suite with Valgrind" OFF)
+  enable_testing()
 
   include(Coverage)
   include(Valgrind)

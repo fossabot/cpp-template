@@ -2,7 +2,7 @@ if(COVERAGE)
   include(AddCompilerFlag)
 
   if(CMAKE_COMPILER_IS_GNUCXX)
-    message(STATUS "Building test suite with coverage information, use lcov")
+    message(STATUS "Building with coverage information, use lcov")
 
     add_required_compiler_flag("--coverage")
 
@@ -44,8 +44,7 @@ if(COVERAGE)
         "Generating HTML report ${CMAKE_CURRENT_BINARY_DIR}/coverage/index.html"
     )
   else()
-    message(
-      STATUS "Building test suite with coverage information, use llvm-cov")
+    message(STATUS "Building with coverage information, use llvm-cov")
 
     add_required_compiler_flag("-fprofile-instr-generate")
     add_required_compiler_flag("-fcoverage-mapping")
