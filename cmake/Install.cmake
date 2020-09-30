@@ -20,6 +20,10 @@ endif()
 
 install(TARGETS ${PROGRAM_NAME} DESTINATION bin)
 
+if(BUILD_SHARED)
+  install(TARGETS ${LIB_NAME} DESTINATION lib)
+endif()
+
 install(DIRECTORY include/ DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 install(
   TARGETS ${LIB_NAME}
