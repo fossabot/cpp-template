@@ -15,7 +15,7 @@ message(STATUS "Build ${PROJECT_NAME}: ${CPP_TEMPLATE_VERSION}")
 option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
 option(BUILD_DOC "Build documentation" OFF)
-option(BENCHMARK "Enable benchmarking" OFF)
+option(BENCHMARK "Build benchmark" OFF)
 option(FORMAT "Format code" OFF)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
 
@@ -38,6 +38,7 @@ set(SANITIZER
 include(Check)
 include(ClangTidy)
 include(CompilerOptions)
+include(Doxygen)
 include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
@@ -93,7 +94,7 @@ if(BUILD_TESTING)
 endif()
 
 if(BENCHMARK)
-  message(STATUS "Enable benchmarking")
+  message(STATUS "Build benchmark")
 
   file(GLOB_RECURSE BENCHMARK_SOURCES CONFIGURE_DEPENDS
        ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/*.cpp)
@@ -105,6 +106,5 @@ if(BENCHMARK)
                                                           benchmark::benchmark)
 endif()
 
-include(Doxygen)
 include(Format)
 include(Install)

@@ -16,10 +16,4 @@ if(BUILD_DOC)
     COMMENT
       "Generating documentation ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/index.html"
   )
-
-  add_dependencies(${LIB_NAME} doc)
-  add_dependencies(${PROGRAM_NAME} doc)
-  if(BUILD_TESTING)
-    add_dependencies(${TEST_PROGRAM_NAME} doc)
-  endif()
 endif()
