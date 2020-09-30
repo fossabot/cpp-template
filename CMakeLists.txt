@@ -42,7 +42,7 @@ include(Doxygen)
 include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
-set(LIB_NAME add)
+set(LIB_NAME klib)
 set(TEST_PROGRAM_NAME test-gtest)
 set(BENCHMARK_PROGRAM_NAME test-benchmark)
 

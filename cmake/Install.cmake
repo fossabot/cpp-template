@@ -1,11 +1,11 @@
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
-set(project_config_in "${CMAKE_CURRENT_SOURCE_DIR}/cmake/addConfig.cmake.in")
-set(project_config_out "${CMAKE_CURRENT_BINARY_DIR}/addConfig.cmake")
-set(config_targets_file "addConfigTargets.cmake")
-set(version_config_file "${CMAKE_CURRENT_BINARY_DIR}/addConfigVersion.cmake")
-set(export_dest_dir "${CMAKE_INSTALL_LIBDIR}/cmake/add")
+set(project_config_in "${CMAKE_CURRENT_SOURCE_DIR}/cmake/klibConfig.cmake.in")
+set(project_config_out "${CMAKE_CURRENT_BINARY_DIR}/klibConfig.cmake")
+set(config_targets_file "klibConfigTargets.cmake")
+set(version_config_file "${CMAKE_CURRENT_BINARY_DIR}/klibConfigVersion.cmake")
+set(export_dest_dir "${CMAKE_INSTALL_LIBDIR}/cmake/klib")
 
 set(CMAKE_SKIP_BUILD_RPATH FALSE)
 set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
