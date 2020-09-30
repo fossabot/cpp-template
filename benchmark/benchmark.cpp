@@ -1,6 +1,6 @@
 #include <benchmark/benchmark.h>
 
-#include "lib.h"
+#include "add.h"
 
 void test(benchmark::State& state) {
   for (auto _ : state) {

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "lib.h"
+#include "add.h"
 
 int main() {
   std::vector<std::int32_t> v;
