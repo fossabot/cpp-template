@@ -64,13 +64,17 @@ endif()
 
 add_library(${LIB_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 
+if(NOT BUILD_SHARED)
+  include(LTO)
+endif()
+
 target_include_directories(
   ${LIB_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                      "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
-set_target_properties(${LIB_NAME} PROPERTIES VERSION 0.1.0 SOVERSION 0)
+set_target_properties(
+  ${LIB_NAME} PROPERTIES VERSION ${PROJECT_VERSION}
+                         SOVERSION ${CPP_TEMPLATE_VERSION_MAJOR})
 set_target_properties(${LIB_NAME} PROPERTIES DEBUG_POSTFIX d)
-
-include(LTO)
 
 add_executable(${PROGRAM_NAME} ${SOURCES})
 target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
