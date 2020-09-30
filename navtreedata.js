@@ -36,20 +36,20 @@ var NAVTREE =
         [ "Tools", "md_README.html#autotoc_md8", null ]
       ] ]
     ] ],
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ]
+    [ "类", "annotated.html", [
+      [ "类列表", "annotated.html", "annotated_dup" ],
+      [ "类索引", "classes.html", null ],
+      [ "类成员", "functions.html", [
+        [ "全部", "functions.html", null ],
+        [ "函数", "functions_func.html", null ]
       ] ]
     ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Macros", "globals_defs.html", null ]
+    [ "文件", "files.html", [
+      [ "文件列表", "files.html", "files_dup" ],
+      [ "文件成员", "globals.html", [
+        [ "全部", "globals.html", null ],
+        [ "函数", "globals_func.html", null ],
+        [ "宏定义", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -60,5 +60,5 @@ var NAVTREEINDEX =
 "add_8h.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = '点击 关闭 面板同步';
+var SYNCOFFMSG = '点击 开启 面板同步';

@@ -20,11 +20,11 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
-  1: "Classes",
-  2: "Files",
-  3: "Functions",
-  4: "Macros",
-  5: "Pages"
+  0: "全部",
+  1: "类",
+  2: "文件",
+  3: "函数",
+  4: "宏定义",
+  5: "页"
 };
 
