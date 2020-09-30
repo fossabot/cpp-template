@@ -28,6 +28,7 @@ https://kaiserlancelot.github.io/cpp-template/dev/bench/
 - https://github.com/github/codeql-action
 - https://github.com/coverallsapp/github-action
 - https://github.com/rhysd/github-action-benchmark
+- https://github.com/peaceiris/actions-gh-pages
 
 ### CMake
 
