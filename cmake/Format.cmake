@@ -19,11 +19,16 @@ if(FORMAT)
     ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_project/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
 
-  file(GLOB_RECURSE CMAKE_FORMAT_SOURCES CONFIGURE_DEPENDS
-       ${CMAKE_CURRENT_SOURCE_DIR}/cmake/*.cmake
-       ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt)
+  file(
+    GLOB_RECURSE
+    CMAKE_FORMAT_SOURCES
+    CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/*.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_project/*.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt)
 
   add_custom_target(
     format

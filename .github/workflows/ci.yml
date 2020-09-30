@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install dependencies
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update
@@ -47,13 +47,23 @@ jobs:
       - name: Test
         run: cd build ; ctest -C Release -j$(nproc) --output-on-failure
 
+      - name: Install
+        run: sudo cmake --build build --config Release --target install
+
+      - name: Install test
+        run: |
+          cd test_project
+          cmake -S . -B build
+          cmake --build build --config Release -j$(nproc)
+          ./build/test-project
+
   macos:
     runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install dependencies
         run: |
           wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
           unzip -q release-1.10.0.zip
@@ -74,3 +84,13 @@ jobs:
 
       - name: Test
         run: cd build ; ctest -C Release -j`sysctl -n hw.ncpu` --output-on-failure
+
+      - name: Install
+        run: sudo cmake --build build --config Release --target install
+
+      - name: Install test
+        run: |
+          cd test_project
+          cmake -S . -B build
+          cmake --build build --config Release -j`sysctl -n hw.ncpu`
+          ./build/test-project

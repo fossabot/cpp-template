@@ -24,7 +24,7 @@ jobs:
         with:
           config-file: ./.github/codeql/codeql_config.yml
 
-      - name: Install
+      - name: Install dependencies
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update

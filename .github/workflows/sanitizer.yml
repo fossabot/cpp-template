@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install dependencies
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
           sudo apt update
@@ -52,7 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install dependencies
         run: |
           wget -q https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
           unzip -q llvmorg-10.0.1.zip
@@ -95,7 +95,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install dependencies
         run: |
           sudo apt install llvm
           wget -q https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
@@ -139,7 +139,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install dependencies
         run: |
           ln -s "$(brew --prefix llvm)/bin/llvm-symbolizer" "/usr/local/bin/llvm-symbolizer"
           wget -q https://github.com/google/googletest/archive/release-1.10.0.zip
@@ -176,7 +176,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install dependencies
         run: |
           wget -q https://github.com/llvm/llvm-project/archive/llvmorg-10.0.1.zip
           unzip -q llvmorg-10.0.1.zip
