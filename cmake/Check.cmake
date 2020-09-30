@@ -22,8 +22,8 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   if(CMAKE_COMPILER_IS_GNUCXX)
     message(STATUS "Linux and GCC")
-    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.1.0)
-      message(FATAL_ERROR "GCC version must be at least 10.1.0: "
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.3.0)
+      message(FATAL_ERROR "GCC version must be at least 9.3.0: "
                           ${CMAKE_CXX_COMPILER_VERSION})
     endif()
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")

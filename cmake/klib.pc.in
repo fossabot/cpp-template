@@ -1,0 +1,12 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+
+Name: lib@LIB_NAME@
+Description: A template for C++ projects using CMake
+URL: https://github.com/KaiserLancelot/cpp-template
+Version: @CPP_TEMPLATE_VERSION@
+CFlags: -I${includedir} @PKG_CONFIG_DEFINES@
+Libs: -L${libdir} -lklib
+Requires: @PKG_CONFIG_REQUIRES@

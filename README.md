@@ -36,6 +36,7 @@ https://kaiserlancelot.github.io/cpp-template/dev/bench/
 - https://gcc.gnu.org/onlinedocs/gcc-10.2.0/gcc/Option-Summary.html#Option-Summary
 - https://clang.llvm.org/docs/ClangCommandLineReference.html
 - https://gitlab.kitware.com/cmake/community/-/wikis/doc/cmake/RPATH-handling
+- https://gitlab.kitware.com/cmake/community/-/wikis/doc/cpack/PackageGenerators
 
 ### Coverage
 

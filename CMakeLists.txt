@@ -112,3 +112,5 @@ if(BENCHMARK)
 endif()
 
 include(Install)
+include(PkgConfig)
+include(klibCPack)
