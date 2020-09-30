@@ -55,3 +55,4 @@ A template for C++ projects using CMake
 - https://clang.llvm.org/docs/ClangFormat.html
 - https://clang.llvm.org/extra/clang-tidy/
 - https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html
+- https://github.com/doxygen/doxygen

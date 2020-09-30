@@ -5,9 +5,9 @@ project(
   VERSION 0.1.0
   LANGUAGES C CXX)
 
-option(LTO "Enable link time optimization(When CMAKE_BUILD_TYPE is Release)" ON)
 option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
+option(BUILD_DOC "Build Documentation" OFF)
 option(BENCHMARK "Enable benchmarking" OFF)
 option(FORMAT "Format code" OFF)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
@@ -33,6 +33,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(Check)
 include(ClangTidy)
 include(CompilerOptions)
+# include(Doxygen)
 include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
@@ -49,25 +50,22 @@ add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
 
 if(BUILD_SHARED)
   message(STATUS "Build shared library")
+  include(LTO)
   add_library(${LIB_NAME} SHARED ${LIB_SOURCES})
 else()
   message(STATUS "Build static library")
-  if((CMAKE_BUILD_TYPE STREQUAL "Release") AND LTO)
-    message(WARNING "IPO / LTO has been turned on, only "
-                    ${CMAKE_CXX_COMPILER_ID} " " ${CMAKE_CXX_COMPILER_VERSION}
-                    " can be used")
-  endif()
-
   add_library(${LIB_NAME} STATIC ${LIB_SOURCES})
 endif()
 
 add_library(${LIB_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 
 target_include_directories(
-  ${LIB_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
+  ${LIB_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
                      "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 set_target_properties(${LIB_NAME} PROPERTIES VERSION 0.1.0 SOVERSION 0)
 set_target_properties(${LIB_NAME} PROPERTIES DEBUG_POSTFIX d)
+
+include(LTO)
 
 add_executable(${PROGRAM_NAME} ${SOURCES})
 target_link_libraries(${PROGRAM_NAME} PRIVATE ${LIB_NAME})
