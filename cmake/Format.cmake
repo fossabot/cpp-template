@@ -35,10 +35,4 @@ if(FORMAT)
     COMMAND ${CLANG_FORMAT_EXECUTABLE} -i ${CLANG_FORMAT_SOURCES}
     COMMAND ${CMAKE_FORMAT_EXECUTABLE} -i ${CMAKE_FORMAT_SOURCES}
     COMMENT "Format C++ and CMake files")
-
-  add_dependencies(${LIB_NAME} format)
-  add_dependencies(${PROGRAM_NAME} format)
-  if(BUILD_TESTING)
-    add_dependencies(${TEST_PROGRAM_NAME} format)
-  endif()
 endif()

@@ -39,6 +39,7 @@ include(Check)
 include(ClangTidy)
 include(CompilerOptions)
 include(Doxygen)
+include(Format)
 include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
@@ -110,5 +111,4 @@ if(BENCHMARK)
                                                           benchmark::benchmark)
 endif()
 
-include(Format)
 include(Install)
