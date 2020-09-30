@@ -19,6 +19,7 @@ if("${isSystemDir}" STREQUAL "-1")
 endif()
 
 install(TARGETS ${PROGRAM_NAME} DESTINATION bin)
+install(TARGETS ${LIB_NAME} DESTINATION lib)
 
 install(DIRECTORY include/ DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
 install(

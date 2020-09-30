@@ -52,8 +52,6 @@ file(GLOB_RECURSE LIB_SOURCES CONFIGURE_DEPENDS
 set(SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 list(REMOVE_ITEM LIB_SOURCES ${SOURCES})
 
-add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
-
 if(BUILD_SHARED)
   message(STATUS "Build shared library")
   include(LTO)
@@ -112,5 +110,4 @@ if(BENCHMARK)
 endif()
 
 include(Install)
-include(PkgConfig)
 include(klibCPack)
