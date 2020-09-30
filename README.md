@@ -10,7 +10,7 @@ A template for C++ projects using CMake
 
 ## Doc
 
-https://kaiserlancelot.github.io/cpp-template/
+https://kaiserlancelot.github.io/cpp-template/html
 
 ## Benchmark
 
