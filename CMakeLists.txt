@@ -9,6 +9,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
   option(USE_LIBCXX "Use libc++" OFF)
 endif()
 
+option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
 option(BENCHMARK "Enable benchmarking" OFF)
 option(FORMAT "Format code" OFF)
@@ -38,7 +39,15 @@ set(SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp)
 list(REMOVE_ITEM LIB_SOURCES ${SOURCES})
 
 add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
-add_library(${LIB_NAME} STATIC ${LIB_SOURCES})
+
+if(BUILD_SHARED)
+  add_library(${LIB_NAME} SHARED ${LIB_SOURCES})
+else()
+  add_library(${LIB_NAME} STATIC ${LIB_SOURCES})
+endif()
+
+add_library(${LIB_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
+
 target_include_directories(
   ${LIB_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
                      "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
