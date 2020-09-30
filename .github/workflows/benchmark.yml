@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: benchmark-linux
-          path: build/benchmark-result.txt
+          path: benchmark-result.txt
 
   macos:
     runs-on: macos-latest
@@ -116,4 +116,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: benchmark-macos
-          path: build/benchmark-result.txt
+          path: benchmark-result.txt
