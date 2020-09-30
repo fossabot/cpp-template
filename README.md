@@ -8,6 +8,14 @@
 
 A template for C++ projects using CMake
 
+## Doc
+
+https://kaiserlancelot.github.io/cpp-template/
+
+## Benchmark
+
+https://kaiserlancelot.github.io/cpp-template/dev/bench/
+
 ## Reference
 
 ### Github Action
