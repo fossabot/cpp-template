@@ -3,7 +3,7 @@
 #include <cstdint>
 
 /**
- * @brief ubtract two numbers
+ * @brief subtract two numbers
  * @param lhs Number on the left hand side
  * @param rhs Number on the left hand side
  * @return The result of subtracting two numbers

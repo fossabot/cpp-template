@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.12)
 
 include(cmake/Version.cmake)
 
-spdlog_extract_version()
+klib_extract_version()
 
 project(
   cpp-template
-  VERSION ${SPDLOG_VERSION}
+  VERSION ${KLIB_VERSION}
   LANGUAGES C CXX)
 
-message(STATUS "Build spdlog: ${SPDLOG_VERSION}")
+message(STATUS "Build klib: ${KLIB_VERSION}")
 
 option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
