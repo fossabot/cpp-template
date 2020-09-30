@@ -61,6 +61,7 @@ jobs:
         with:
           name: coverage-linux-gcc
           path: build/coverage
+          if-no-files-found: error
 
   macos:
     runs-on: macos-latest
@@ -94,3 +95,4 @@ jobs:
         with:
           name: coverage-macos
           path: build/coverage
+          if-no-files-found: error

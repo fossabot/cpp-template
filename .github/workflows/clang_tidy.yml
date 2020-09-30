@@ -47,6 +47,7 @@ jobs:
         with:
           name: clang-tidy-linux
           path: build/clang-tidy.txt
+          if-no-files-found: error
 
   macos:
     runs-on: macos-latest
@@ -79,3 +80,4 @@ jobs:
         with:
           name: clang-tidy-macos
           path: build/clang-tidy.txt
+          if-no-files-found: error

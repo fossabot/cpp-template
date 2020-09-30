@@ -63,6 +63,7 @@ jobs:
         with:
           name: benchmark-linux
           path: benchmark-result.txt
+          if-no-files-found: error
 
   macos:
     runs-on: macos-latest
@@ -117,3 +118,4 @@ jobs:
         with:
           name: benchmark-macos
           path: benchmark-result.txt
+          if-no-files-found: error
