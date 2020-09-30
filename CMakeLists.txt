@@ -1,13 +1,19 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.12)
+
+include(cmake/Version.cmake)
+
+spdlog_extract_version()
 
 project(
   cpp-template
-  VERSION 0.1.0
+  VERSION ${SPDLOG_VERSION}
   LANGUAGES C CXX)
+
+message(STATUS "Build spdlog: ${SPDLOG_VERSION}")
 
 option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
-option(BUILD_DOC "Build Documentation" OFF)
+option(BUILD_DOC "Build documentation" OFF)
 option(BENCHMARK "Enable benchmarking" OFF)
 option(FORMAT "Format code" OFF)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
@@ -33,7 +39,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(Check)
 include(ClangTidy)
 include(CompilerOptions)
-# include(Doxygen)
 include(Sanitizer)
 
 set(PROGRAM_NAME test-program)
@@ -101,5 +106,6 @@ if(BENCHMARK)
                                                           benchmark::benchmark)
 endif()
 
+include(Doxygen)
 include(Format)
 include(Install)

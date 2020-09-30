@@ -4,7 +4,7 @@
 
 TEST(AddTest, test1) {
   Bar bar;
-  bar.fun();
+  bar.get_val();
 
   ASSERT_EQ(add(1, 2), 3);
 }
