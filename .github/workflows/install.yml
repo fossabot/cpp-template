@@ -118,6 +118,9 @@ jobs:
           cmake -S . -B build
           cmake --build build --config Release -j`sysctl -n hw.ncpu`
           ./build/test-project
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
 
   macos-shared:
     runs-on: macos-latest
@@ -146,3 +149,6 @@ jobs:
           cmake -S . -B build
           cmake --build build --config Release -j`sysctl -n hw.ncpu`
           ./build/test-project
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
