@@ -94,10 +94,10 @@ jobs:
           CPLUS_INCLUDE_PATH: /usr/local/include
 
       - name: Run Benchmark(json)
-        run: ./build/test-program-benchmark --benchmark_out=benchmark-result.json --benchmark_out_format=json
+        run: ./build/test-benchmark --benchmark_out=benchmark-result.json --benchmark_out_format=json
 
       - name: Run Benchmark(txt)
-        run: ./build/test-program-benchmark --benchmark_out=benchmark-result.txt --benchmark_out_format=console
+        run: ./build/test-benchmark --benchmark_out=benchmark-result.txt --benchmark_out_format=console
 
       - name: Store benchmark result
         uses: rhysd/github-action-benchmark@v1

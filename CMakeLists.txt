@@ -5,15 +5,15 @@ project(
   VERSION 0.1.0
   LANGUAGES C CXX)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
-  option(USE_LIBCXX "Use libc++" OFF)
-endif()
-
 option(BUILD_SHARED "Build shared library" OFF)
 option(BUILD_TESTING "Build test suite" OFF)
 option(BENCHMARK "Enable benchmarking" OFF)
 option(FORMAT "Format code" OFF)
 option(CLANG_TIDY "Analyze code with clang-tidy" OFF)
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "(Apple)?Clang")
+  option(USE_LIBCXX "Use libc++" OFF)
+endif()
 
 set(SANITIZER
     ""
