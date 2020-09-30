@@ -33,9 +33,9 @@ if(COVERAGE)
       COMMAND ${LCOV_PATH} -d . -z
       COMMAND ${TEST_PROGRAM_NAME}
       COMMAND
-        ${LCOV_PATH} -d . --include '${CMAKE_SOURCE_DIR}/src/*.cpp' --include
-        '${CMAKE_SOURCE_DIR}/include/*.h' --gcov-tool ${GCOV_PATH} -c -o
-        lcov.info --rc lcov_branch_coverage=1
+        ${LCOV_PATH} -d . --include '${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp'
+        --include '${CMAKE_CURRENT_SOURCE_DIR}/include/*.h' --gcov-tool
+        ${GCOV_PATH} -c -o lcov.info --rc lcov_branch_coverage=1
       COMMAND ${GENHTML_PATH} lcov.info -o coverage -s --title "${PROJECT_NAME}"
               --legend --demangle-cpp --branch-coverage
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
@@ -69,12 +69,12 @@ if(COVERAGE)
         ${LLVM_COV_PATH} show ${TEST_PROGRAM_NAME}
         -instr-profile=${TEST_PROGRAM_NAME}.profdata -format=html
         -output-dir=coverage -show-line-counts-or-regions
-        -ignore-filename-regex=${CMAKE_SOURCE_DIR}/tests/*
+        -ignore-filename-regex=${CMAKE_CURRENT_SOURCE_DIR}/tests/*
       COMMAND
         ${LLVM_COV_PATH} export ${TEST_PROGRAM_NAME}
         -instr-profile=${TEST_PROGRAM_NAME}.profdata
-        -ignore-filename-regex=${CMAKE_SOURCE_DIR}/tests/* -format=lcov >
-        lcov.info
+        -ignore-filename-regex=${CMAKE_CURRENT_SOURCE_DIR}/tests/* -format=lcov
+        > lcov.info
       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
       DEPENDS ${TEST_PROGRAM_NAME}
       COMMENT

@@ -28,7 +28,7 @@ set(SANITIZER
       "Build with a sanitizer. Options are: Address, Thread, Memory, Undefined and Address;Undefined"
 )
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include(Check)
 include(ClangTidy)
@@ -40,8 +40,9 @@ set(LIB_NAME add)
 set(TEST_PROGRAM_NAME test-gtest)
 set(BENCHMARK_PROGRAM_NAME test-benchmark)
 
-file(GLOB_RECURSE LIB_SOURCES CONFIGURE_DEPENDS ${CMAKE_SOURCE_DIR}/src/*.cpp)
-set(SOURCES ${CMAKE_SOURCE_DIR}/src/main.cpp)
+file(GLOB_RECURSE LIB_SOURCES CONFIGURE_DEPENDS
+     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+set(SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 list(REMOVE_ITEM LIB_SOURCES ${SOURCES})
 
 add_definitions(-DAPP_VERSION="${PROJECT_VERSION}")
@@ -80,7 +81,7 @@ if(BUILD_TESTING)
   include(Valgrind)
 
   file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS
-       ${CMAKE_SOURCE_DIR}/tests/*.cpp)
+       ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
 
   find_package(GTest REQUIRED)
 
@@ -93,7 +94,7 @@ if(BENCHMARK)
   message(STATUS "Enable benchmarking")
 
   file(GLOB_RECURSE BENCHMARK_SOURCES CONFIGURE_DEPENDS
-       ${CMAKE_SOURCE_DIR}/benchmark/*.cpp)
+       ${CMAKE_CURRENT_SOURCE_DIR}/benchmark/*.cpp)
 
   find_package(benchmark REQUIRED)
 
