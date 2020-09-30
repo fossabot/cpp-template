@@ -3,6 +3,9 @@ if(BUILD_DOC)
 
   find_package(Doxygen REQUIRED)
 
+  set(INPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+  set(OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
+
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in
                  ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
 

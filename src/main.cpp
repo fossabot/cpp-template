@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "add.h"
+#include "sub.h"
 
 int main() {
   std::vector<std::int32_t> v;
@@ -11,4 +12,5 @@ int main() {
   v.push_back(3);
 
   std::cout << add(1, 2) << '\n';
+  std::cout << sub(1, 2) << '\n';
 }
