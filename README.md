@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/github/license/KaiserLancelot/cpp-template)](https://github.com/KaiserLancelot/cpp-template/blob/master/LICENSE)
 [![Badge](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg?style=flat-square)](https://996.icu/#/zh_CN)
 [![Lines](https://tokei.rs/b1/github/KaiserLancelot/cpp-template)](https://github.com/Aaronepower/tokei)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKaiserLancelot%2Fcpp-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FKaiserLancelot%2Fcpp-template?ref=badge_shield)
 
 A template for C++ projects using CMake
 
@@ -66,3 +67,7 @@ https://kaiserlancelot.github.io/cpp-template/dev/bench/
 - https://clang.llvm.org/extra/clang-tidy/
 - https://clang.llvm.org/extra/clang-tidy/checks/readability-identifier-naming.html
 - https://www.doxygen.nl/manual/index.html
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FKaiserLancelot%2Fcpp-template.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FKaiserLancelot%2Fcpp-template?ref=badge_large)
