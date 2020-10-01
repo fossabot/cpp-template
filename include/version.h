@@ -7,7 +7,7 @@
 /// minor version
 #define CPP_TEMPLATE_VER_MINOR 1
 /// patch version
-#define CPP_TEMPLATE_VER_PATCH 6
+#define CPP_TEMPLATE_VER_PATCH 8
 
 /// version
 #define CPP_TEMPLATE_VERSION                                       \
