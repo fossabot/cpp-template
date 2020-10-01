@@ -3,7 +3,7 @@ name: Doxygen
 on: [push, pull_request]
 
 jobs:
-  build:
+  ubuntu:
     runs-on: ubuntu-20.04
 
     steps:
@@ -39,3 +39,28 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/html
           keep_files: true
+
+  macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: brew install doxygen
+
+      - name: Configure
+        run: cmake -S . -B build -DBUILD_DOC=ON
+
+      - name: Build
+        run: cmake --build build --config Release --target doc
+        env:
+          C_INCLUDE_PATH: /usr/local/include
+          CPLUS_INCLUDE_PATH: /usr/local/include
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: doxygen-macos
+          path: build/html
+          if-no-files-found: error
