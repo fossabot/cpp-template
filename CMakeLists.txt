@@ -110,4 +110,4 @@ if(BENCHMARK)
 endif()
 
 include(Install)
-include(klibCPack)
+include(TheCPack)

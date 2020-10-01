@@ -15,6 +15,5 @@ if(BUILD_DOC)
     COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     COMMENT
-      "Generating documentation ${CMAKE_CURRENT_SOURCE_DIR}/doc/html/index.html"
-  )
+      "Generating documentation ${CMAKE_CURRENT_BINARY_DIR}/html/index.html")
 endif()
