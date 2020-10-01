@@ -55,7 +55,7 @@ jobs:
           C_INCLUDE_PATH: /usr/local/include
           CPLUS_INCLUDE_PATH: /usr/local/include
 
-      - name: Create archive
+      - name: CPack
         run: cd build ; cpack
 
       - name: Upload release asset
